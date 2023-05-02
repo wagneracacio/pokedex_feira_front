@@ -1,12 +1,7 @@
-import { Profile } from "./pages/Profile";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Router } from "./router";
 
 function App() {
-  return (
-    <div className="App">
-      <Profile />
-    </div>
-  );
+  return <Router></Router>;
 }
 
 export default App;

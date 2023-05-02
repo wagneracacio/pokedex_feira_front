@@ -1,9 +1,13 @@
 import { ProfilePicture } from "../../components/ProfilePicture";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   return (
-    <div>
+    <>
+      <h1>Profile Page</h1>
       <ProfilePicture />
-    </div>
+      <button onClick={() => navigate("/")}>login</button>
+    </>
   );
 };
