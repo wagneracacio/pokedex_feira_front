@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { CameraButton } from "./CameraButton";
 import profile from "../../profile.jpg";
-import { Button, Image } from "react-bootstrap";
-import { BsFillCameraFill } from "react-icons/bs";
+import { Image } from "react-bootstrap";
+
 export const ProfilePicture = () => {
+  const refWidth = useRef(0);
   const [width, setWidth] = useState(0);
   useEffect(() => {
     const handleResize = () => {
       const size = Math.ceil(window.innerWidth * 0.75);
       if (size <= 250) {
+        refWidth.current = size;
         setWidth(size);
       } else if (width !== 250) {
+        refWidth.current = 250;
         setWidth(250);
       }
     };
@@ -23,8 +27,8 @@ export const ProfilePicture = () => {
     <div>
       <div
         style={{
-          width: `${width}px`,
-          height: `${width}px`,
+          width: `${refWidth.current}px`,
+          height: `${refWidth.current}px`,
           position: "relative",
           overflow: "hidden",
           marginLeft: "auto",
@@ -41,9 +45,7 @@ export const ProfilePicture = () => {
           src={profile}
         />
       </div>
-      <Button style={{ zIndex: -1, position: "fixed" }} variant="primary">
-        <BsFillCameraFill />
-      </Button>
+      <CameraButton size={refWidth} />
       <div>{width}hello</div>
     </div>
   );
