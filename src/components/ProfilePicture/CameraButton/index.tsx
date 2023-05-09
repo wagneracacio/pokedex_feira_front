@@ -11,7 +11,7 @@ export const CameraButton = ({ size }: Props) => {
   const [ml, setMl] = useState(0);
   useEffect(() => {
     const handleResize = () => {
-      const perc = 0.67;
+      const perc = 0.5;
       const halfscreen = window.innerWidth * 0.5;
       const halfSize = size.current * 0.5;
       const { width, height } = refButton.current!.getBoundingClientRect();
@@ -29,7 +29,7 @@ export const CameraButton = ({ size }: Props) => {
       ref={refButton}
       style={{
         zIndex: 10,
-        position: "fixed",
+        position: "relative",
         borderRadius: "50%",
         paddingLeft: 12,
         paddingRight: 12,
