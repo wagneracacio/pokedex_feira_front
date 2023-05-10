@@ -46,7 +46,6 @@ export const ProfilePicture = () => {
         />
       </div>
       <CameraButton size={refWidth} />
-      <div>{width}hello</div>
     </div>
   );
 };
