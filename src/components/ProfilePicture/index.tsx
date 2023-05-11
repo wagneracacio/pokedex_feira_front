@@ -8,7 +8,7 @@ export const ProfilePicture = () => {
   const [width, setWidth] = useState(0);
   useEffect(() => {
     const handleResize = () => {
-      const size = Math.ceil(window.innerWidth * 0.75);
+      const size = Math.ceil(window.innerWidth * 0.6);
       if (size <= 250) {
         refWidth.current = size;
         setWidth(size);
