@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Login } from "../pages/Login";
 import { Profile } from "../pages/Profile";
 import { Score } from "../pages/Score";
+import { Scan } from "../pages/Scan";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ export const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/scan",
+    element: <Scan />,
   },
   {
     path: "/score",

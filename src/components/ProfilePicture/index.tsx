@@ -3,12 +3,17 @@ import { CameraButton } from "./CameraButton";
 import profile from "../../profile.jpg";
 import { Image } from "react-bootstrap";
 
-export const ProfilePicture = () => {
+interface Props {
+  showButton?: boolean;
+  defaultSize?: number;
+}
+
+export const ProfilePicture = ({ showButton = true, defaultSize }: Props) => {
   const refWidth = useRef(0);
   const [width, setWidth] = useState(0);
   useEffect(() => {
     const handleResize = () => {
-      const size = Math.ceil(window.innerWidth * 0.6);
+      const size = defaultSize || Math.ceil(window.innerWidth * 0.6);
       if (size <= 250) {
         refWidth.current = size;
         setWidth(size);
@@ -45,7 +50,7 @@ export const ProfilePicture = () => {
           src={profile}
         />
       </div>
-      <CameraButton size={refWidth} />
+      {showButton ? <CameraButton size={refWidth} /> : null}
     </div>
   );
 };
