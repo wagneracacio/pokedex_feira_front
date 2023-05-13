@@ -1,22 +1,18 @@
-import { Card } from "react-bootstrap";
-import { ProfilePicture } from "../../components/ProfilePicture";
+import { Button, Card, Row } from "react-bootstrap";
 import { useState } from "react";
 import QrReader from "react-qr-reader";
+import { MdCameraswitch } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const Scan = () => {
-  const [selected, setSelected] = useState("environment");
-  const [startScan, setStartScan] = useState(false);
-  const [loadingScan, setLoadingScan] = useState(false);
-  const [data, setData] = useState("");
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState<"environment" | "user">(
+    "environment"
+  );
 
   const handleScan = async (scanData: any) => {
-    setLoadingScan(true);
-    console.log(`loaded data data`, scanData);
     if (scanData && scanData !== "") {
       console.log(`loaded >>>`, scanData);
-      setData(scanData);
-      setStartScan(false);
-      setLoadingScan(false);
       // setPrecScan(scanData);
     }
   };
@@ -29,40 +25,47 @@ export const Scan = () => {
         <h5 style={{ textAlign: "center" }}>Scan</h5>
       </Card.Title>
       <Card.Body>
-        <ProfilePicture
-          showButton={false}
-          defaultSize={window.innerWidth * 0.3}
-        />
-        <h2>
-          Last Scan:
-          {selected}
-        </h2>
-
-        <button
-          onClick={() => {
-            setStartScan(!startScan);
-          }}
-        >
-          {startScan ? "Stop Scan" : "Start Scan"}
-        </button>
-        {startScan && (
-          <>
-            <select onChange={(e) => setSelected(e.target.value)}>
-              <option value={"environment"}>Back Camera</option>
-              <option value={"user"}>Front Camera</option>
-            </select>
-            <QrReader
-              facingMode={selected as "user"}
-              delay={1000}
-              onError={handleError}
-              onScan={handleScan}
-              // chooseDeviceId={()=>selected}
-              style={{ width: "300px" }}
-            />
-          </>
-        )}
-        {loadingScan && <p>Loading</p>}
-        {data !== "" && <p>{data}</p>}
+        <div className="d-flex justify-content-center">
+          <Button
+            style={{
+              borderRadius: "50%",
+              paddingLeft: 12,
+              paddingRight: 12,
+              paddingTop: 12,
+              paddingBottom: 12,
+            }}
+            onClick={() => {
+              if (selected === "user") {
+                setSelected("environment");
+              } else {
+                setSelected("user");
+              }
+            }}
+            variant="success"
+          >
+            <MdCameraswitch size={25} />
+          </Button>
+        </div>
+        <Row className="d-flex justify-content-center mt-4">
+          <QrReader
+            facingMode={selected}
+            delay={1000}
+            onError={handleError}
+            onScan={handleScan}
+            style={{ width: "90vw", maxWidth: "70vh" }}
+          />
+        </Row>
+        <Row className="d-flex justify-content-center mt-4">
+          <Button
+            style={{ maxWidth: "50vw" }}
+            onClick={() => {
+              navigate("/profidex");
+            }}
+            variant="warning"
+          >
+            Cancelar
+          </Button>
+        </Row>
       </Card.Body>
     </Card>
   );
