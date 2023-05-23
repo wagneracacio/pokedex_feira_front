@@ -3,6 +3,9 @@ import { ProfilePicture } from "../../components/ProfilePicture";
 import { useState } from "react";
 import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { List } from "../../components/List";
+import teste from "../../assets/images/prof/teste.png";
+
 //BsQrCodeScan
 
 export const Profidex = () => {
@@ -34,6 +37,55 @@ export const Profidex = () => {
             <BsQrCodeScan size={50} />
           </Button>
         </div>
+        <List
+          items={[
+            {
+              label: "Profissoes",
+              images: [
+                {
+                  id: "1",
+                  image: teste,
+                },
+                {
+                  id: "2",
+                  image: teste,
+                },
+                {
+                  id: "3",
+                  image: teste,
+                },
+                {
+                  id: "4",
+                  image: teste,
+                },
+                {
+                  id: "5",
+                  image: teste,
+                },
+                {
+                  id: "6",
+                  image: teste,
+                },
+                {
+                  id: "7",
+                  image: teste,
+                },
+                {
+                  id: "8",
+                  image: teste,
+                },
+                {
+                  id: "9",
+                  image: teste,
+                },
+                {
+                  id: "10",
+                  image: teste,
+                },
+              ],
+            },
+          ]}
+        />
       </Card.Body>
     </Card>
   );
