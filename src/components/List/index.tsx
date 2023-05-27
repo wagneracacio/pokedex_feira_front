@@ -1,18 +1,20 @@
+import { ReactNode, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 
-interface ImageF {
-  image: string;
-  id: string;
-}
-interface ItemF {
+interface ItemF<T> {
   label: string;
-  images: ImageF[];
+  images: T[];
 }
-interface Props {
-  items: ItemF[];
+interface Props<T> {
+  items: ItemF<T>[];
+  renderImage: (item: T) => ReactNode;
 }
-const getDiv = (images: ImageF[]) => 3;
-const GenerateCols = (images: ImageF[], byRow: number) => {
+
+const GenerateCols = <T,>(
+  images: T[],
+  byRow: number,
+  renderItem: (item: T) => ReactNode
+) => {
   const empty = [];
   if (images.length < byRow) {
     for (let i = 0; i < byRow - images.length; i++) {
@@ -21,53 +23,48 @@ const GenerateCols = (images: ImageF[], byRow: number) => {
   }
   return (
     <>
-      {images.map(({ image, id }, i) => (
-        <Col key={i}>
-          {image && id ? (
-            <>
-              {id}
-              <img
-                style={{
-                  width: "100%",
-                  filter: "brightness(0)",
-                }}
-                src={image}
-                alt={id}
-              />
-            </>
-          ) : (
-            <div>Hello</div>
-          )}
-        </Col>
+      {images.map((item, i) => (
+        <Col key={i}>{renderItem(item)}</Col>
       ))}
       <>{empty.length > 0 ? empty.map((i) => <Col key={i}></Col>) : null}</>
     </>
   );
 };
-const sliceRow = (images: ImageF[], byRow: number, count: number) => {
+const sliceRow = <T,>(images: T[], byRow: number, count: number) => {
   return images.slice(byRow * (count - 1), byRow * count);
 };
-const GenerateRows = (images: ImageF[]) => {
-  const byRow = getDiv(images);
+const GenerateRows = <T,>(images: T[], renderItem: (item: T) => ReactNode) => {
+  const [byRow, setByRow] = useState(Math.floor(window.innerWidth / 135));
   const rows = [];
   for (let i = 1; i <= Math.ceil(images.length / byRow); i++) {
     rows.push(i);
   }
+  useEffect(() => {
+    const handleResize = () => {
+      setByRow(Math.floor(window.innerWidth / 135));
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       {rows.map((v) => (
-        <Row key={v}>{GenerateCols(sliceRow(images, byRow, v), byRow)}</Row>
+        <Row key={v}>
+          {GenerateCols(sliceRow(images, byRow, v), byRow, renderItem)}
+        </Row>
       ))}
     </>
   );
 };
-export const List = ({ items }: Props) => {
+export const List = <T,>({ items, renderImage }: Props<T>) => {
   return (
     <>
       {items.map(({ label, images }, i) => (
         <div key={i}>
           <h4 style={{ textAlign: "center" }}>{label}</h4>
-          {GenerateRows(images)}
+          {GenerateRows(images, renderImage)}
         </div>
       ))}
     </>

@@ -4,6 +4,7 @@ import { Profile } from "../pages/Profile";
 import { Score } from "../pages/Score";
 import { Scan } from "../pages/Scan";
 import { Profidex } from "../pages/Profidex";
+import { Galeria } from "../pages/Galeria";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "galeria",
+    element: <Galeria />,
   },
   {
     path: "/scan",

@@ -5,88 +5,35 @@ import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { List } from "../../components/List";
 import teste from "../../assets/images/prof/teste.png";
+import { PageLayout } from "../Layout";
 
 //BsQrCodeScan
 
 export const Profidex = () => {
   const navigate = useNavigate();
   return (
-    <Card style={{ height: "100%", background: "none", border: "none" }}>
-      <Card.Title>
-        <h5 style={{ textAlign: "center" }}>Scan</h5>
-      </Card.Title>
-      <Card.Body>
-        <ProfilePicture
-          showButton={false}
-          defaultSize={window.innerWidth * 0.3}
-        />
-        <div className="d-flex justify-content-center mt-5">
-          <Button
-            style={{
-              borderRadius: "50%",
-              paddingLeft: 12,
-              paddingRight: 12,
-              paddingTop: 12,
-              paddingBottom: 12,
-              borderColor: "black",
-              borderWidth: "5px",
-            }}
-            variant="light"
-            onClick={() => navigate("/scan")}
-          >
-            <BsQrCodeScan size={50} />
-          </Button>
-        </div>
-        <List
-          items={[
-            {
-              label: "Profissoes",
-              images: [
-                {
-                  id: "1",
-                  image: teste,
-                },
-                {
-                  id: "2",
-                  image: teste,
-                },
-                {
-                  id: "3",
-                  image: teste,
-                },
-                {
-                  id: "4",
-                  image: teste,
-                },
-                {
-                  id: "5",
-                  image: teste,
-                },
-                {
-                  id: "6",
-                  image: teste,
-                },
-                {
-                  id: "7",
-                  image: teste,
-                },
-                {
-                  id: "8",
-                  image: teste,
-                },
-                {
-                  id: "9",
-                  image: teste,
-                },
-                {
-                  id: "10",
-                  image: teste,
-                },
-              ],
-            },
-          ]}
-        />
-      </Card.Body>
-    </Card>
+    <PageLayout title="Scan">
+      <ProfilePicture
+        showButton={false}
+        defaultSize={window.innerWidth * 0.3}
+      />
+      <div className="d-flex justify-content-center mt-5">
+        <Button
+          style={{
+            borderRadius: "50%",
+            paddingLeft: 12,
+            paddingRight: 12,
+            paddingTop: 12,
+            paddingBottom: 12,
+            borderColor: "black",
+            borderWidth: "5px",
+          }}
+          variant="light"
+          onClick={() => navigate("/scan")}
+        >
+          <BsQrCodeScan size={50} />
+        </Button>
+      </div>
+    </PageLayout>
   );
 };
