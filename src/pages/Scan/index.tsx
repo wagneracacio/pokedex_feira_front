@@ -1,4 +1,4 @@
-import { Button, Card, Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { useState } from "react";
 import QrReader from "react-qr-reader";
 import { MdCameraswitch } from "react-icons/md";
@@ -46,7 +46,7 @@ export const Scan = () => {
       <Row className="d-flex justify-content-center mt-4">
         <QrReader
           facingMode={selected}
-          delay={1000}
+          delay={false}
           onError={handleError}
           onScan={handleScan}
           style={{ width: "90vw", maxWidth: "70vh" }}
