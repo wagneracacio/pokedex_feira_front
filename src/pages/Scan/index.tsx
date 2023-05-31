@@ -18,10 +18,10 @@ export const Scan = () => {
     }
   };
   const handleError = (err: any) => {
-    console.error(err);
+    console.log(err);
   };
   return (
-    <PageLayout title="Scan">
+    <PageLayout title="Scan" url="/">
       <div className="d-flex justify-content-center">
         <Button
           style={{
@@ -46,7 +46,7 @@ export const Scan = () => {
       <Row className="d-flex justify-content-center mt-4">
         <QrReader
           facingMode={selected}
-          delay={false}
+          delay={5000}
           onError={handleError}
           onScan={handleScan}
           style={{ width: "90vw", maxWidth: "70vh" }}
