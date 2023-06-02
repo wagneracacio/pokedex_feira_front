@@ -1,10 +1,7 @@
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { ProfilePicture } from "../../components/ProfilePicture";
-import { useState } from "react";
 import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { List } from "../../components/List";
-import teste from "../../assets/images/prof/teste.png";
 import { PageLayout } from "../Layout";
 
 //BsQrCodeScan

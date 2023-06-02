@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { FaMedal } from "react-icons/fa";
 
 interface Props {

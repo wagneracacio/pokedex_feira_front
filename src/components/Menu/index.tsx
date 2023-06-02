@@ -1,4 +1,3 @@
-import { FaMedal } from "react-icons/fa";
 import { Medal } from "./Medal";
 interface Score {
   name: string;

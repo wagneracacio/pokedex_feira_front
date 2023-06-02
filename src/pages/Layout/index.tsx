@@ -14,9 +14,13 @@ export const PageLayout = ({ title, children, url }: Props) => {
   return (
     <Card style={{ height: "100%", background: "none", border: "none" }}>
       <Card.Title>
-        <Row className="mt-3">
-          <Col>
-            {url ? (
+        <Row className="mt-3" style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "space-between",
+        }}>
+          {url && (
+            <Col>
               <Button
                 style={{
                   display: "block",
@@ -31,8 +35,8 @@ export const PageLayout = ({ title, children, url }: Props) => {
               >
                 <FiSkipBack />
               </Button>
-            ) : null}
-          </Col>
+            </Col>
+          )}
           <Col>
             <h5 style={{ textAlign: "center" }}>{title}</h5>
           </Col>
