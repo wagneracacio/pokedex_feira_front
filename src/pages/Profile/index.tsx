@@ -1,6 +1,6 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { ProfilePicture } from "../../components/ProfilePicture";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 export const Profile = () => {
   return (

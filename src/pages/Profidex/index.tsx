@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import { ProfilePicture } from "../../components/ProfilePicture";
 import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 //BsQrCodeScan
 

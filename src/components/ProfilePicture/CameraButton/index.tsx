@@ -14,6 +14,7 @@ export const CameraButton = ({ size }: Props) => {
       const perc = 0.5;
       const halfscreen = window.innerWidth * 0.5;
       const halfSize = size.current * 0.5;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const { width, height } = refButton.current!.getBoundingClientRect();
       setMl(halfscreen - width * 0.5 - 12 + halfSize * perc);
       setMt(-(height * 0.5) - halfSize * (1 - perc));
