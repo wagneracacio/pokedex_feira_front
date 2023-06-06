@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import TestProvider from "../TestProvider";
+import Layout from "../../pages/Layout";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Layout", () => {
   it("should render correctly Layout component", () => {
     render(
-      <TestProvider title="My Profile">
+      <MemoryRouter>
+        <Layout title="My Profile" goBack>
           <div>My Profile Page</div>
-      </TestProvider>
+        </Layout>
+      </MemoryRouter>
     );
 
     expect(screen.getByText("My Profile")).toBeInTheDocument();

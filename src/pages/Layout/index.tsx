@@ -16,12 +16,12 @@ export default function PageLayout({
   goBack = false,
 }: PageProps) {
   const navigate = useNavigate();
-  const handleClose = () => {
+  const onClose = () => {
     navigate(-1);
   };
   return (
     <Card style={{ height: "100%", background: "none", border: "none" }}>
-      <Header goBack={goBack} onClose={handleClose} title={title} />
+      <Header {...{ title, goBack, onClose}} />
       <Card.Body>{children}</Card.Body>
     </Card>
   );
