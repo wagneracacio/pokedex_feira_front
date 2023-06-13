@@ -1,11 +1,8 @@
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { ProfilePicture } from "../../components/ProfilePicture";
-import { useNavigate } from "react-router-dom";
-import { Menu } from "../../components/Menu";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 export const Profile = () => {
-  const navigate = useNavigate();
   return (
     <PageLayout title="My Profile">
       <ProfilePicture />

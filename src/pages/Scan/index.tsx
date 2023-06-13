@@ -3,7 +3,7 @@ import { useState } from "react";
 import QrReader from "react-qr-reader";
 import { MdCameraswitch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 export const Scan = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Scan = () => {
     console.log(err);
   };
   return (
-    <PageLayout title="Scan" url="/">
+    <PageLayout title="Scan" goBack>
       <div className="d-flex justify-content-center">
         <Button
           style={{

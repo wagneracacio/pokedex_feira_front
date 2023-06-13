@@ -1,7 +1,6 @@
 import { List } from "../../components/List";
 import teste from "../../assets/images/prof/teste.png";
-import { Card } from "react-bootstrap";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 interface ImageF {
   id: string;

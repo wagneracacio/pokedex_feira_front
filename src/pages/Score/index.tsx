@@ -1,6 +1,5 @@
-import { Card } from "react-bootstrap";
 import { Menu } from "../../components/Menu";
-import { PageLayout } from "../Layout";
+import PageLayout from "../Layout";
 
 export const Score = () => {
   return (

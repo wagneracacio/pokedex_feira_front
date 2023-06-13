@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "galeria",
+    path: "/galeria",
     element: <Galeria />,
   },
   {
