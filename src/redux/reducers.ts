@@ -1,3 +1,5 @@
 import { combineReducers } from "redux";
-
-export default combineReducers({});
+import Auth from "./features/auth/auth-slice";
+export default combineReducers({
+  Auth,
+});
