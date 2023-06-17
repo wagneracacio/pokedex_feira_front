@@ -3,17 +3,21 @@ import { ProfilePicture } from "../../components/ProfilePicture";
 import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
-
+import QRCode from "react-qr-code";
+import { useAppSelector } from "../../redux/hook";
 //BsQrCodeScan
 
 export const Profidex = () => {
   const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.Auth);
   return (
     <PageLayout title="Scan">
-      <ProfilePicture
-        showButton={false}
-        defaultSize={window.innerWidth * 0.3}
-      />
+      <div className="d-flex justify-content-center">
+        <QRCode value={user!.uid} />
+      </div>
+      <h5 className="d-flex justify-content-center">
+        Seu QrCode
+      </h5>
       <div className="d-flex justify-content-center mt-5">
         <Button
           style={{
