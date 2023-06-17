@@ -2,17 +2,13 @@ import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { db, firebaseAuth } from "../../../config/firebase";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setUser, updateUser } from "./auth-slice";
-import {
-  updateDoc,
-  getDoc,
-  setDoc,
-  doc,
-} from "@firebase/firestore";
+import { updateDoc, getDoc, setDoc, doc } from "@firebase/firestore";
 import { UsuarioF } from "../../../types";
 
 export interface UpdateProps {
   displayName: string;
   descricao: string;
+  phoneNumber: string;
 }
 export const updateProfile = createAsyncThunk(
   "user/update",
@@ -36,8 +32,10 @@ export const refreshLogin = createAsyncThunk(
         let userRef = doc(db, "users", user.uid);
         getDoc(userRef).then((userDoc) => {
           let userData = {};
+          console.log(user);
           if (!userDoc.exists()) {
             userData = {
+              uid: user.uid,
               descricao: "",
               displayName: user.displayName,
               email: user.email,
@@ -46,7 +44,7 @@ export const refreshLogin = createAsyncThunk(
             };
             setDoc(userRef, userData);
           } else {
-            userData = userDoc.data();
+            userData = { uid: user.uid, ...userDoc.data() };
           }
           dispatch(setUser(userData as UsuarioF));
         });

@@ -13,11 +13,9 @@ export const Profidex = () => {
   return (
     <PageLayout title="Scan">
       <div className="d-flex justify-content-center">
-        <QRCode value={user!.uid} />
+        <QRCode value={user!.uid || "hey"} />
       </div>
-      <h5 className="d-flex justify-content-center">
-        Seu QrCode
-      </h5>
+      <h5 className="d-flex justify-content-center">Seu QrCode</h5>
       <div className="d-flex justify-content-center mt-5">
         <Button
           style={{
