@@ -21,7 +21,7 @@ export default function PageLayout({
   };
   return (
     <Card style={{ height: "100%", background: "none", border: "none" }}>
-      <Header {...{ title, goBack, onClose}} />
+      <Header {...{ title, goBack, onClose }} />
       <Card.Body>{children}</Card.Body>
     </Card>
   );
@@ -33,6 +33,7 @@ interface HeaderProps {
   title?: string;
 }
 function Header({ goBack, onClose, title }: HeaderProps) {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -77,9 +78,18 @@ function Header({ goBack, onClose, title }: HeaderProps) {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/profile")}>
+            Profile
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/profidex")}>
+            Profidex
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/galeria")}>
+            Galeria
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/logout")}>
+            Logout
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
