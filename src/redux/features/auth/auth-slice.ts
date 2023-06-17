@@ -6,9 +6,11 @@ export const login = createAsyncThunk("user/login", async () => {});
 
 export interface loginState {
   user: User | null;
+  loading: boolean;
 }
 const initialState: loginState = {
   user: null,
+  loading: true,
 };
 
 const loginSlice = createSlice({
@@ -18,6 +20,7 @@ const loginSlice = createSlice({
     setUser(state, action: PayloadAction<User | null>) {
       const user = action.payload;
       state.user = user;
+      state.loading = false;
     },
   },
   extraReducers(builder) {},
