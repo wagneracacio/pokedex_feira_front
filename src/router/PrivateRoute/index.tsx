@@ -15,7 +15,7 @@ export const PrivateRoute = ({ children }: Props) => {
   useEffect(() => {
     if (!loading && !user) navigate("/");
     if (loading) dispatch(refreshLogin() as unknown as AnyAction);
-  }, [loading]);
+  }, [loading, user]);
   return user ? (
     <>{children}</>
   ) : (

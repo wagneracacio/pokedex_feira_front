@@ -1,8 +1,56 @@
 import { User } from "@firebase/auth";
-import { doc, getDoc, setDoc } from "@firebase/firestore";
+import { doc, getDoc, setDoc, collection } from "@firebase/firestore";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  Auth,
+} from "firebase/auth";
+import { db, firebaseAuth } from "../../../config/firebase";
 
-export const login = createAsyncThunk("user/login", async () => {});
+export const login = createAsyncThunk("user/login", async (_, { dispatch }) => {
+  firebaseAuth.languageCode = "pt_br";
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(firebaseAuth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential!.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      console.log(token);
+      console.log(user);
+      dispatch(setUser(result.user));
+
+      const usersRef = collection(db, "users");
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+});
+
+export const logout = createAsyncThunk(
+  "user/logout",
+  async (_, { dispatch }) => {
+    signOut(firebaseAuth)
+      .then(() => {
+        dispatch(setUser(null));
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+);
 
 export interface loginState {
   user: User | null;
@@ -33,6 +81,7 @@ export const refreshLogin = createAsyncThunk(
   async (_, { dispatch }) => {
     return await firebaseAuth.onAuthStateChanged((user) => {
       // setShowLogin(!firebaseAuth.currentUser);
+      console.log(user);
       if (!!user) {
         // console.log(user!.toJSON());
         let userRef = doc(db, "users", user.uid);

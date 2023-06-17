@@ -1,16 +1,18 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { ProfilePicture } from "../../components/ProfilePicture";
 import PageLayout from "../Layout";
+import { useAppSelector } from "../../redux/hook";
 
 export const Profile = () => {
+  const { user } = useAppSelector((state) => state.Auth);
   return (
     <PageLayout title="My Profile">
-      <ProfilePicture />
+      <ProfilePicture url={user?.photoURL || undefined} />
       <Form.Group className="mt-2">
         <Form.Label className="text-center" style={{ width: "100%" }}>
           Nome
         </Form.Label>
-        <Form.Control type="text" />
+        <Form.Control type="text" defaultValue={user?.displayName || ""} />
       </Form.Group>
       <Form.Group className="mt-2">
         <Form.Label className="text-center" style={{ width: "100%" }}>
