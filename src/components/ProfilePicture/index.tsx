@@ -58,7 +58,7 @@ export const ProfilePicture = ({
           referrerPolicy="no-referrer"
         />
       </div>
-      {showButton ? <CameraButton size={refWidth} /> : null}
+      {/*showButton ? <CameraButton size={refWidth} /> : null*/}
     </div>
   );
 };

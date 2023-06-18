@@ -6,6 +6,7 @@ import { Scan } from "../pages/Scan";
 import { Profidex } from "../pages/Profidex";
 import { Galeria } from "../pages/Galeria";
 import { PrivateRoute } from "./PrivateRoute";
+import { Amigos } from "../pages/Amigos";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,14 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Profidex />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/amigos",
+    element: (
+      <PrivateRoute>
+        <Amigos />
       </PrivateRoute>
     ),
   },

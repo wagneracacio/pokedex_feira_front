@@ -88,6 +88,9 @@ const Header = ({ goBack, onClose, title }: HeaderProps) => {
           <Dropdown.Item onClick={() => navigate("/profidex")}>
             Profidex
           </Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/amigos")}>
+            Amigos
+          </Dropdown.Item>
           <Dropdown.Item onClick={() => navigate("/galeria")}>
             Galeria
           </Dropdown.Item>

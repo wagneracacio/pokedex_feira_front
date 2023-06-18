@@ -7,13 +7,6 @@ import { useEffect } from "react";
 import { getAllEvents } from "../../redux/features/event/thunks";
 import { AnyAction } from "@reduxjs/toolkit";
 
-interface ImageF {
-  id: string;
-  name: string;
-  image: string;
-  found: boolean;
-}
-
 export const Galeria = () => {
   const { events } = useAppSelector((state) => state.Event);
   const dispatch = useAppDispatch();
