@@ -17,15 +17,6 @@ export const Profidex = () => {
   const { user } = useAppSelector((state) => state.Auth);
   return (
     <PageLayout title="Scan">
-      <button
-        onClick={() => {
-          dispatch(
-            getAllUsers() as unknown as AnyAction
-          );
-        }}
-      >
-        Teste
-      </button>
       <div className="d-flex justify-content-center">
         <QRCode value={user!.uid || "hey"} />
       </div>
