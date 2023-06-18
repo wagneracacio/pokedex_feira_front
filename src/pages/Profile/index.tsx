@@ -48,6 +48,7 @@ export const Profile = () => {
           Numero para contato
         </Form.Label>
         <PhoneInput
+          defaultCountry="BR"
           value={user!.phoneNumber}
           placeholder="Numero para contato"
           onChange={(phone) => {
@@ -85,9 +86,6 @@ export const Profile = () => {
             >
               Salvar
             </Button>
-          </Col>
-          <Col align="center">
-            <Button variant="warning">Cancelar</Button>
           </Col>
         </Row>
       )}

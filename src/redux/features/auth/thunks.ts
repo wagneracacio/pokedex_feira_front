@@ -1,8 +1,19 @@
-import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  User,
+} from "firebase/auth";
 import { db, firebaseAuth } from "../../../config/firebase";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setUser, updateUser } from "./auth-slice";
-import { updateDoc, getDoc, setDoc, doc } from "@firebase/firestore";
+import {
+  updateDoc,
+  getDoc,
+  setDoc,
+  doc,
+  arrayUnion,
+} from "@firebase/firestore";
 import { UsuarioF } from "../../../types";
 
 export interface UpdateProps {
@@ -24,6 +35,19 @@ export const updateProfile = createAsyncThunk(
   }
 );
 
+export const addFriend = createAsyncThunk(
+  "user/addFriend",
+  async (uid: string, { dispatch }) => {
+    return await firebaseAuth.onAuthStateChanged((user) => {
+      if (!!user) {
+        updateDoc(doc(db, "users", user.uid), {
+          friends: arrayUnion(doc(db, "users", uid)),
+        }).then(() => {});
+      }
+    });
+  }
+);
+
 export const refreshLogin = createAsyncThunk(
   "user/refreshlogin",
   async (_, { dispatch }) => {
@@ -31,22 +55,7 @@ export const refreshLogin = createAsyncThunk(
       if (!!user) {
         let userRef = doc(db, "users", user.uid);
         getDoc(userRef).then((userDoc) => {
-          let userData = {};
-          console.log(user);
-          if (!userDoc.exists()) {
-            userData = {
-              uid: user.uid,
-              descricao: "",
-              displayName: user.displayName,
-              email: user.email,
-              photoURL: user.photoURL,
-              phoneNumber: user.phoneNumber,
-            };
-            setDoc(userRef, userData);
-          } else {
-            userData = { uid: user.uid, ...userDoc.data() };
-          }
-          dispatch(setUser(userData as UsuarioF));
+          dispatch(setUser({ uid: user.uid, ...userDoc.data() } as UsuarioF));
         });
       }
     });
@@ -60,7 +69,22 @@ export const login = createAsyncThunk("user/login", async (_, { dispatch }) => {
     .then((result) => {
       let userRef = doc(db, "users", result.user.uid);
       getDoc(userRef).then((userDoc) => {
-        dispatch(setUser(userDoc.data() as UsuarioF));
+        let userData = {};
+        if (!userDoc.exists()) {
+          userData = {
+            uid: result.user.uid,
+            descricao: "",
+            displayName: result.user.displayName,
+            email: result.user.email,
+            photoURL: result.user.photoURL,
+            phoneNumber: result.user.phoneNumber,
+            friends: arrayUnion(),
+          };
+          setDoc(userRef, userData);
+        } else {
+          userData = { uid: result.user.uid, ...userDoc.data() };
+        }
+        dispatch(setUser(userData as UsuarioF));
       });
     })
     .catch((error) => {

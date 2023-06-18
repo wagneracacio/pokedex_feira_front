@@ -4,14 +4,28 @@ import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
 import QRCode from "react-qr-code";
-import { useAppSelector } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { addFriend } from "../../redux/features/auth/thunks";
+import { AnyAction } from "@reduxjs/toolkit";
+import { useRef } from "react";
+import { getAllUsers } from "../../redux/features/user/thunks";
 //BsQrCodeScan
 
 export const Profidex = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.Auth);
   return (
     <PageLayout title="Scan">
+      <button
+        onClick={() => {
+          dispatch(
+            getAllUsers() as unknown as AnyAction
+          );
+        }}
+      >
+        Teste
+      </button>
       <div className="d-flex justify-content-center">
         <QRCode value={user!.uid || "hey"} />
       </div>
