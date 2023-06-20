@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logout } from "../../redux/features/auth/auth-slice";
 import { AnyAction } from "@reduxjs/toolkit";
-
+import intera from "../../assets/images/company/Intera.svg";
+import { Footer } from "../../components/Footer";
 interface PageProps {
   title: string;
   children: ReactNode;
@@ -26,6 +27,7 @@ export default function PageLayout({
     <Card style={{ height: "100%", background: "none", border: "none" }}>
       <Header {...{ title, goBack, onClose }} />
       <Card.Body>{children}</Card.Body>
+      <Footer />
     </Card>
   );
 }

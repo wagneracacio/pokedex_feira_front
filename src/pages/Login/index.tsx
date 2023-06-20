@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { AnyAction } from "redux";
 import { Card } from "react-bootstrap";
+import { Footer } from "../../components/Footer";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ export const Login = () => {
             />
           </div>
         </Card.Body>
+        <Footer />
       </Card>
     </>
   );
