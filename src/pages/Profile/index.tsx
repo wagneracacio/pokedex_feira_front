@@ -76,6 +76,7 @@ export const Profile = () => {
               onClick={() => {
                 dispatch(
                   updateProfile({
+                    user: user!,
                     displayName: name.current!.value,
                     descricao: descricao.current!.value,
                     phoneNumber: phone,

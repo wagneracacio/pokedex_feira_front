@@ -15,6 +15,14 @@ const loginSlice = createSlice({
   name: "loginSlice",
   initialState,
   reducers: {
+    addFriendState(state, action: PayloadAction<string>) {
+      const friend = action.payload;
+      state.user?.friends.push(friend);
+    },
+    addEventState(state, action: PayloadAction<string>) {
+      const evento = action.payload;
+      state.user?.eventos.push(evento);
+    },
     setUser(state, action: PayloadAction<UsuarioF | null>) {
       const user = action.payload;
       state.user = user;
@@ -28,6 +36,7 @@ const loginSlice = createSlice({
   },
   extraReducers(builder) {},
 });
-export const { setUser, updateUser } = loginSlice.actions;
+export const { setUser, updateUser, addEventState, addFriendState } =
+  loginSlice.actions;
 export default loginSlice.reducer;
 export * from "./thunks";

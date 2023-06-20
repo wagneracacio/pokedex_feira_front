@@ -7,6 +7,6 @@ export interface UsuarioF extends BaseF {
   email: string;
   phoneNumber: string;
   photoURL: string;
-  eventos: EventoF[];
-  friends: UsuarioF[];
+  eventos: string[];
+  friends: string[];
 }

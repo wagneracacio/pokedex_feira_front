@@ -2,11 +2,10 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  User,
 } from "firebase/auth";
 import { db, firebaseAuth } from "../../../config/firebase";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setUser, updateUser } from "./auth-slice";
+import { addFriendState, setUser } from "./auth-slice";
 import {
   updateDoc,
   getDoc,
@@ -17,6 +16,9 @@ import {
 import { UsuarioF } from "../../../types";
 import { loadCache, saveCache } from "../base/base-slice";
 
+export interface UpdatePropsCall extends UpdateProps {
+  user: UsuarioF;
+}
 export interface UpdateProps {
   displayName: string;
   descricao: string;
@@ -24,12 +26,16 @@ export interface UpdateProps {
 }
 export const updateProfile = createAsyncThunk(
   "user/update",
-  async (update: UpdateProps, { dispatch }) => {
+  async ({ user, ...update }: UpdatePropsCall, { dispatch }) => {
     return await firebaseAuth.onAuthStateChanged((user) => {
       if (!!user) {
         let userRef = doc(db, "users", user.uid);
         updateDoc(userRef, { ...update }).then(() => {
-          dispatch(updateUser(update));
+          const u: any = { ...user };
+          if (update.displayName) u.displayName = update.displayName;
+          if (update.descricao) u.descricao = update.descricao;
+          if (update.phoneNumber) u.phoneNumber = update.phoneNumber;
+          dispatch(saveCache({ auth: u }));
         });
       }
     });
@@ -42,8 +48,25 @@ export const addFriend = createAsyncThunk(
     return await firebaseAuth.onAuthStateChanged((user) => {
       if (!!user) {
         updateDoc(doc(db, "users", user.uid), {
-          friends: arrayUnion(doc(db, "users", uid)),
-        }).then(() => {});
+          friends: arrayUnion(uid),
+        }).then(() => {
+          dispatch(addFriendState(uid));
+        });
+      }
+    });
+  }
+);
+
+export const addEvent = createAsyncThunk(
+  "user/addFriend",
+  async (uid: string, { dispatch }) => {
+    return await firebaseAuth.onAuthStateChanged((user) => {
+      if (!!user) {
+        updateDoc(doc(db, "users", user.uid), {
+          eventos: arrayUnion(uid),
+        }).then(() => {
+          dispatch(addFriendState(uid));
+        });
       }
     });
   }
@@ -54,7 +77,7 @@ export const refreshLogin = createAsyncThunk(
   async (_, { dispatch }) => {
     return await firebaseAuth.onAuthStateChanged((user) => {
       if (!!user) {
-        dispatch(loadCache(user.uid))
+        dispatch(loadCache(user.uid));
         //let userRef = doc(db, "users", user.uid);
         //getDoc(userRef).then((userDoc) => {
         //  dispatch(setUser({ uid: user.uid, ...userDoc.data() } as UsuarioF));
@@ -81,6 +104,7 @@ export const login = createAsyncThunk("user/login", async (_, { dispatch }) => {
             photoURL: result.user.photoURL,
             phoneNumber: result.user.phoneNumber,
             friends: arrayUnion(),
+            eventos: arrayUnion(),
           };
           setDoc(userRef, userData);
         } else {
