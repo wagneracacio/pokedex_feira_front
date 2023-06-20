@@ -83,7 +83,7 @@ const Header = ({ goBack, onClose, title }: HeaderProps) => {
 
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => navigate("/profile")}>
-            Profile
+            Meu Perfil
           </Dropdown.Item>
           <Dropdown.Item onClick={() => navigate("/profidex")}>
             Profidex

@@ -30,7 +30,7 @@ export const Profile = () => {
     change();
   }, [phone]);
   return (
-    <PageLayout title="My Profile">
+    <PageLayout title="Meu Perfil">
       <ProfilePicture url={user?.photoURL || undefined} />
       <Form.Group className="mt-2">
         <Form.Label className="text-center" style={{ width: "100%" }}>
