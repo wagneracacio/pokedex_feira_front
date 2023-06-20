@@ -4,6 +4,8 @@ import QrReader from "react-qr-reader";
 import { MdCameraswitch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
+import { qrCodeValidator } from "../../utils/qrCodeValidator";
+import { TypeCheck } from "../../config/credentials";
 
 export const Scan = () => {
   const navigate = useNavigate();
@@ -13,8 +15,15 @@ export const Scan = () => {
 
   const handleScan = async (scanData: any) => {
     if (scanData && scanData !== "") {
-      console.log(`loaded >>>`, scanData);
-      // setPrecScan(scanData);
+      const obj = qrCodeValidator(scanData)
+      if (obj) {
+        if (obj.type === TypeCheck.EVENT) {
+          //chamada para adicionar evento
+        } else if (obj.type === TypeCheck.USER) {
+          //chamada para adicionar amigo
+        }
+        navigate('/profidex')
+      }
     }
   };
   const handleError = (err: any) => {

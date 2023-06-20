@@ -3,8 +3,9 @@ import { BsQrCodeScan } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
 import QRCode from "react-qr-code";
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { userHashCheck } from "../../config/credentials";
+import { useAppSelector } from "../../redux/hook";
+import { TypeCheck, userHashCheck } from "../../config/credentials";
+import { qrCodeGenerator } from "../../utils/qrCodeValidator";
 //BsQrCodeScan
 
 export const Profidex = () => {
@@ -13,7 +14,7 @@ export const Profidex = () => {
   return (
     <PageLayout title="Scan">
       <div className="d-flex justify-content-center">
-        <QRCode value={`${userHashCheck}${user!.uid}`} />
+        <QRCode value={qrCodeGenerator(TypeCheck.USER, user!.uid)} />
       </div>
       <h5 className="d-flex justify-content-center">Seu QrCode</h5>
       <div className="d-flex justify-content-center mt-5">

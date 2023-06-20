@@ -6,6 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { UsuarioF } from "../../types";
 import { ProfilePicture } from "../../components/ProfilePicture";
 import { Col, Row } from "react-bootstrap";
+import { loadCache, saveCache } from "../../redux/features/base/base-slice";
 interface Props {
   user: UsuarioF;
 }
@@ -27,11 +28,14 @@ const AmigoItem = ({ user }: Props) => {
   );
 };
 export const Amigos = () => {
-  const { users } = useAppSelector((state) => state.User);
+  const { users, loading } = useAppSelector((state) => state.User);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getAllUsers() as unknown as AnyAction);
-  });
+    dispatch(loadCache() as unknown as AnyAction);
+  }, []);
+  useEffect(() => {
+    if (loading && users.length) dispatch(saveCache({ users }) as unknown as AnyAction);
+  }, [loading]);
   return (
     <PageLayout title="Amigos">
       <>

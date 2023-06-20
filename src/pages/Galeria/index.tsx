@@ -6,11 +6,13 @@ import { EventoF } from "../../types";
 import { useEffect } from "react";
 import { getAllEvents } from "../../redux/features/event/thunks";
 import { AnyAction } from "@reduxjs/toolkit";
+import { loadCache } from "../../redux/features/base/base-slice";
 
 export const Galeria = () => {
   const { events } = useAppSelector((state) => state.Event);
   const dispatch = useAppDispatch();
   useEffect(() => {
+    dispatch(loadCache() as unknown as AnyAction);
     dispatch(getAllEvents() as unknown as AnyAction);
   }, []);
   return (
