@@ -31,11 +31,11 @@ export const loadCache = createAsyncThunk(
     if (events) {
       dispatch(setLoadingE(false));
       (JSON.parse(events) as EventoF[]).forEach((event) => {
-        loadEvent(event);
+        dispatch(loadEvent(event));
       });
       dispatch(setLoadingE(true));
     } else {
-      dispatch(getAllEvents())
+      dispatch(getAllEvents());
     }
     if (user) {
       dispatch(setLoading(false));
