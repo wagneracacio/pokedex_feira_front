@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import PageLayout from "../Layout";
-import { getAllUsers } from "../../redux/features/user/thunks";
 import { AnyAction } from "@reduxjs/toolkit";
 import { UsuarioF } from "../../types";
 import { ProfilePicture } from "../../components/ProfilePicture";
@@ -30,12 +29,17 @@ const AmigoItem = ({ user }: Props) => {
 export const Amigos = () => {
   const { users, loading } = useAppSelector((state) => state.User);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(loadCache() as unknown as AnyAction);
+  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     if (loading && users.length) dispatch(saveCache({ users }) as unknown as AnyAction);
-  }, [loading]);
+  }, [dispatch, loading, users]);
+
   return (
     <PageLayout title="Amigos">
       <>
