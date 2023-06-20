@@ -15,6 +15,7 @@ import {
   arrayUnion,
 } from "@firebase/firestore";
 import { UsuarioF } from "../../../types";
+import { loadCache, saveCache } from "../base/base-slice";
 
 export interface UpdateProps {
   displayName: string;
@@ -53,10 +54,11 @@ export const refreshLogin = createAsyncThunk(
   async (_, { dispatch }) => {
     return await firebaseAuth.onAuthStateChanged((user) => {
       if (!!user) {
-        let userRef = doc(db, "users", user.uid);
-        getDoc(userRef).then((userDoc) => {
-          dispatch(setUser({ uid: user.uid, ...userDoc.data() } as UsuarioF));
-        });
+        dispatch(loadCache(user.uid))
+        //let userRef = doc(db, "users", user.uid);
+        //getDoc(userRef).then((userDoc) => {
+        //  dispatch(setUser({ uid: user.uid, ...userDoc.data() } as UsuarioF));
+        //});
       }
     });
   }
@@ -84,7 +86,7 @@ export const login = createAsyncThunk("user/login", async (_, { dispatch }) => {
         } else {
           userData = { uid: result.user.uid, ...userDoc.data() };
         }
-        dispatch(setUser(userData as UsuarioF));
+        dispatch(saveCache({ auth: userData as UsuarioF }));
       });
     })
     .catch((error) => {
