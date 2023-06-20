@@ -31,7 +31,7 @@ export const saveCache = createAsyncThunk(
 );
 export const loadCache = createAsyncThunk(
   "system/loadCache",
-  async (uid: string| undefined, { dispatch }) => {
+  async (uid: string | undefined, { dispatch }) => {
     const events = localStorage.getItem(Cache.EVENTO);
     const user = localStorage.getItem(Cache.USER);
     const auth = localStorage.getItem(Cache.AUTH);
@@ -56,8 +56,6 @@ export const loadCache = createAsyncThunk(
         dispatch(loadUser(u));
       });
       dispatch(setLoading(true));
-    } else {
-      dispatch(getAllUsers());
     }
   }
 );

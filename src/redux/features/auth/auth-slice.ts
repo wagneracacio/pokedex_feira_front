@@ -5,16 +5,21 @@ import { UpdateProps } from "./thunks";
 export interface loginState {
   user: UsuarioF | null;
   loading: boolean;
+  beLoad: UsuarioF[];
 }
 const initialState: loginState = {
   user: null,
   loading: true,
+  beLoad: [],
 };
 
 const loginSlice = createSlice({
   name: "loginSlice",
   initialState,
   reducers: {
+    loadedFriends(state) {
+      state.beLoad = [];
+    },
     addFriendState(state, action: PayloadAction<string>) {
       const friend = action.payload;
       state.user?.friends.push(friend);
@@ -36,7 +41,12 @@ const loginSlice = createSlice({
   },
   extraReducers(builder) {},
 });
-export const { setUser, updateUser, addEventState, addFriendState } =
-  loginSlice.actions;
+export const {
+  setUser,
+  updateUser,
+  addEventState,
+  loadedFriends,
+  addFriendState,
+} = loginSlice.actions;
 export default loginSlice.reducer;
 export * from "./thunks";
