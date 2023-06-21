@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { CameraButton } from "./CameraButton";
-import profile from "../../assets/profile.jpg";
+import profile from '../../assets/profile.jpg';
 import { Image } from "react-bootstrap";
 
 interface Props {
-  url?: string;
   showButton?: boolean;
   defaultSize?: number;
 }
 
-export const ProfilePicture = ({
-  showButton = true,
-  defaultSize,
-  url,
-}: Props) => {
+export const ProfilePicture = ({ showButton = true, defaultSize }: Props) => {
   const refWidth = useRef(0);
   const [width, setWidth] = useState(0);
   useEffect(() => {
@@ -32,7 +27,7 @@ export const ProfilePicture = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
@@ -53,12 +48,11 @@ export const ProfilePicture = ({
             height: "100%",
             width: "auto",
           }}
-          src={url}
+          src={profile}
           alt="profile"
-          referrerPolicy="no-referrer"
         />
       </div>
-      {/*showButton ? <CameraButton size={refWidth} /> : null*/}
+      {showButton ? <CameraButton size={refWidth} /> : null}
     </div>
   );
 };

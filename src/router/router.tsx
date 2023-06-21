@@ -5,8 +5,6 @@ import { Score } from "../pages/Score";
 import { Scan } from "../pages/Scan";
 import { Profidex } from "../pages/Profidex";
 import { Galeria } from "../pages/Galeria";
-import { PrivateRoute } from "./PrivateRoute";
-import { Amigos } from "../pages/Amigos";
 
 export const router = createBrowserRouter([
   {
@@ -15,50 +13,22 @@ export const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: (
-      <PrivateRoute>
-        <Profile />
-      </PrivateRoute>
-    ),
+    element: <Profile />,
   },
   {
     path: "/galeria",
-    element: (
-      <PrivateRoute>
-        <Galeria />
-      </PrivateRoute>
-    ),
+    element: <Galeria />,
   },
   {
     path: "/scan",
-    element: (
-      <PrivateRoute>
-        <Scan />
-      </PrivateRoute>
-    ),
+    element: <Scan />,
   },
   {
     path: "/score",
-    element: (
-      <PrivateRoute>
-        <Score />
-      </PrivateRoute>
-    ),
+    element: <Score />,
   },
   {
     path: "/profidex",
-    element: (
-      <PrivateRoute>
-        <Profidex />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/amigos",
-    element: (
-      <PrivateRoute>
-        <Amigos />
-      </PrivateRoute>
-    ),
+    element: <Profidex />,
   },
 ]);
