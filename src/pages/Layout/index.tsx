@@ -3,7 +3,11 @@ import { Button, Card, Dropdown } from "react-bootstrap";
 import { FiSkipBack } from "react-icons/fi";
 import { BsList } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-
+import { useAppDispatch } from "../../redux/hook";
+import { logout } from "../../redux/features/auth/auth-slice";
+import { AnyAction } from "@reduxjs/toolkit";
+import intera from "../../assets/images/company/Intera.svg";
+import { Footer } from "../../components/Footer";
 interface PageProps {
   title: string;
   children: ReactNode;
@@ -23,6 +27,7 @@ export default function PageLayout({
     <Card style={{ height: "100%", background: "none", border: "none" }}>
       <Header {...{ title, goBack, onClose }} />
       <Card.Body>{children}</Card.Body>
+      <Footer />
     </Card>
   );
 }
@@ -32,7 +37,8 @@ interface HeaderProps {
   onClose?: () => void;
   title?: string;
 }
-function Header({ goBack, onClose, title }: HeaderProps) {
+const Header = ({ goBack, onClose, title }: HeaderProps) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (
     <div
@@ -79,19 +85,24 @@ function Header({ goBack, onClose, title }: HeaderProps) {
 
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => navigate("/profile")}>
-            Profile
+            Meu Perfil
           </Dropdown.Item>
           <Dropdown.Item onClick={() => navigate("/profidex")}>
             Profidex
           </Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/amigos")}>
+            Amigos
+          </Dropdown.Item>
           <Dropdown.Item onClick={() => navigate("/galeria")}>
             Galeria
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => navigate("/logout")}>
+          <Dropdown.Item
+            onClick={() => dispatch(logout() as unknown as AnyAction)}
+          >
             Logout
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
   );
-}
+};
