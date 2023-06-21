@@ -4,17 +4,32 @@ import QrReader from "react-qr-reader";
 import { MdCameraswitch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
+import { qrCodeValidator } from "../../utils/qrCodeValidator";
+import { TypeCheck } from "../../config/credentials";
+import { addEvent, addFriend } from "../../redux/features/auth/thunks";
+import { useAppDispatch } from "../../redux/hook";
+import { AnyAction } from "@reduxjs/toolkit";
 
 export const Scan = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [selected, setSelected] = useState<"environment" | "user">(
     "environment"
   );
 
   const handleScan = async (scanData: any) => {
     if (scanData && scanData !== "") {
-      console.log(`loaded >>>`, scanData);
-      // setPrecScan(scanData);
+      const obj = qrCodeValidator(scanData)
+      if (obj) {
+        if (obj.type === TypeCheck.EVENT) {
+          //chamada para adicionar evento
+          dispatch(addEvent(obj.value) as unknown as AnyAction)
+        } else if (obj.type === TypeCheck.USER) {
+          //chamada para adicionar amigo
+          dispatch(addFriend(obj.value) as unknown as AnyAction)
+        }
+        navigate('/profidex')
+      }
     }
   };
   const handleError = (err: any) => {
