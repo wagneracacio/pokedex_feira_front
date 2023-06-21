@@ -26,17 +26,12 @@ export const getUsers = createAsyncThunk(
       dispatch(loadedFriends());
       return;
     }
-    return ids.forEach((id) => {
-      getDoc(doc(db, "users", id))
-        .then((userDoc) => {
-          dispatch(
-            loadUser(userDoc.data() as UsuarioF) as unknown as AnyAction
-          );
-        })
-        .then(() => {
-          dispatch(setLoading(false));
-          dispatch(loadedFriends());
-        });
+    ids.forEach((id) => {
+      getDoc(doc(db, "users", id)).then((userDoc) => {
+        dispatch(loadUser(userDoc.data() as UsuarioF) as unknown as AnyAction);
+      });
     });
+    dispatch(setLoading(false));
+    dispatch(loadedFriends());
   }
 );

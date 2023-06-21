@@ -7,6 +7,7 @@ export interface UsuarioF extends BaseF {
   email: string;
   phoneNumber: string;
   photoURL: string;
+  pontos: number;
   eventos: string[];
   friends: string[];
 }

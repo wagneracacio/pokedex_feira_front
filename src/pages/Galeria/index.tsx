@@ -9,7 +9,10 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { loadCache, saveCache } from "../../redux/features/base/base-slice";
 
 export const Galeria = () => {
-  const { events, loading } = useAppSelector((state) => state.Event);
+  const {
+    Event: { events, loading },
+    Auth: { user },
+  } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadCache() as unknown as AnyAction);
@@ -30,7 +33,7 @@ export const Galeria = () => {
                 marginRight: "auto",
                 width: "100%",
                 maxWidth: "80px",
-                filter: !true ? "brightness(0)" : undefined,
+                filter: !user!.eventos.includes(uid) ? "brightness(0)" : undefined,
               }}
               src={teste}
               alt={uid}

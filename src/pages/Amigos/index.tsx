@@ -6,6 +6,7 @@ import { UsuarioF } from "../../types";
 import { ProfilePicture } from "../../components/ProfilePicture";
 import { Col, Row } from "react-bootstrap";
 import { loadCache, saveCache } from "../../redux/features/base/base-slice";
+import { getUsers } from "../../redux/features/user/thunks";
 interface Props {
   user: UsuarioF;
 }
@@ -27,25 +28,40 @@ const AmigoItem = ({ user }: Props) => {
   );
 };
 export const Amigos = () => {
-  const { users, loading } = useAppSelector((state) => state.User);
+  const {
+    User: { users, loading },
+    Auth: { beLoad, user },
+  } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadCache() as unknown as AnyAction);
-  
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (loading && users.length) dispatch(saveCache({ users }) as unknown as AnyAction);
+    if (beLoad.length > 0) {
+      dispatch(getUsers(beLoad) as unknown as AnyAction);
+    } else if (user!.friends.length > users.length) {
+      dispatch(getUsers(beLoad) as unknown as AnyAction);
+    }
+  },[]);
+  useEffect(() => {
+    if (loading && users.length)
+      dispatch(saveCache({ users }) as unknown as AnyAction);
   }, [dispatch, loading, users]);
 
   return (
     <PageLayout title="Amigos">
       <>
-        {users.map((user) => (
-          <AmigoItem key={user.uid} user={user} />
-        ))}
+        {users
+          .filter((u) => {
+            return user!.friends.includes(u.uid);
+          })
+          .map((user) => (
+            <AmigoItem key={user.uid} user={user} />
+          ))}
       </>
     </PageLayout>
   );

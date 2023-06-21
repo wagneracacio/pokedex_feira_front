@@ -5,7 +5,7 @@ import { UpdateProps } from "./thunks";
 export interface loginState {
   user: UsuarioF | null;
   loading: boolean;
-  beLoad: UsuarioF[];
+  beLoad: UsuarioF['uid'][];
 }
 const initialState: loginState = {
   user: null,
@@ -23,6 +23,7 @@ const loginSlice = createSlice({
     addFriendState(state, action: PayloadAction<string>) {
       const friend = action.payload;
       state.user?.friends.push(friend);
+      state.beLoad.push(friend);
     },
     addEventState(state, action: PayloadAction<string>) {
       const evento = action.payload;
