@@ -57,7 +57,11 @@ export const Amigos = () => {
       <>
         {users
           .filter((u) => {
-            return user!.friends.includes(u.uid);
+            return (
+              user!.friends &&
+              user!.friends.length > 0 &&
+              user!.friends.includes(u.uid)
+            );
           })
           .map((user) => (
             <AmigoItem key={user.uid} user={user} />
