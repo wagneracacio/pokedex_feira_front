@@ -31,7 +31,7 @@ import turismo from "../../../assets/images/gallery/turismo.png";
 import veterinario from "../../../assets/images/gallery/veterinario.png";
 import calculadora from "../../../assets/images/gallery/calculadora.png";
 import { EventoF } from "../../../types";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 export const imagens = {
   agricola: agricola,
   agronomia: agronomia,
@@ -72,7 +72,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "calculadora",
-    uid: uuid(),
+    uid: v4(),
     name: "Administração",
   },
   {
@@ -80,7 +80,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "veterinario",
-    uid: uuid(),
+    uid: v4(),
     name: "Medicina Veterinária",
   },
   {
@@ -88,7 +88,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "publicitario",
-    uid: uuid(),
+    uid: v4(),
     name: "Publicidade, Pro, Mark",
   },
   {
@@ -96,7 +96,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "agronomia",
-    uid: uuid(),
+    uid: v4(),
     name: "Agronomia",
   },
   {
@@ -104,7 +104,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "psicologo",
-    uid: uuid(),
+    uid: v4(),
     name: "Psicologia",
   },
   {
@@ -112,7 +112,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "justica",
-    uid: uuid(),
+    uid: v4(),
     name: "Direito",
   },
   {
@@ -120,7 +120,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "ti",
-    uid: uuid(),
+    uid: v4(),
     name: "Computação",
   },
   {
@@ -128,7 +128,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "doutor",
-    uid: uuid(),
+    uid: v4(),
     name: "Medicina",
   },
   {
@@ -136,7 +136,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "fisica",
-    uid: uuid(),
+    uid: v4(),
     name: "Educação Física",
   },
   {
@@ -144,7 +144,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "empreendedor",
-    uid: uuid(),
+    uid: v4(),
     name: "Empreendedorismo",
   },
   {
@@ -152,7 +152,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "arquiteto",
-    uid: uuid(),
+    uid: v4(),
     name: "Arquitetura",
   },
   {
@@ -160,7 +160,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "biomedicina",
-    uid: uuid(),
+    uid: v4(),
     name: "Biomedicina",
   },
   {
@@ -168,7 +168,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "notas",
-    uid: uuid(),
+    uid: v4(),
     name: "Música",
   },
   {
@@ -176,7 +176,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "nutricao",
-    uid: uuid(),
+    uid: v4(),
     name: "Nutrição",
   },
   {
@@ -184,7 +184,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "construcao",
-    uid: uuid(),
+    uid: v4(),
     name: "Engenharia Civil",
   },
   {
@@ -192,7 +192,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "moda",
-    uid: uuid(),
+    uid: v4(),
     name: "Moda",
   },
   {
@@ -200,7 +200,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "engenharia",
-    uid: uuid(),
+    uid: v4(),
     name: "Engenharia mecânica",
   },
   {
@@ -208,7 +208,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "biologia",
-    uid: uuid(),
+    uid: v4(),
     name: "Biologia",
   },
   {
@@ -216,7 +216,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "economia",
-    uid: uuid(),
+    uid: v4(),
     name: "Economia",
   },
   {
@@ -224,7 +224,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "artes",
-    uid: uuid(),
+    uid: v4(),
     name: "Artes Visuais",
   },
   {
@@ -232,7 +232,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "cabeleireiro",
-    uid: uuid(),
+    uid: v4(),
     name: "Cabelereiro",
   },
   {
@@ -240,7 +240,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "enfermagem",
-    uid: uuid(),
+    uid: v4(),
     name: "Enfermagem",
   },
   {
@@ -248,7 +248,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "camera",
-    uid: uuid(),
+    uid: v4(),
     name: "Fotografia",
   },
   {
@@ -256,7 +256,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "beleza",
-    uid: uuid(),
+    uid: v4(),
     name: "Estética",
   },
   {
@@ -264,7 +264,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "historia",
-    uid: uuid(),
+    uid: v4(),
     name: "História",
   },
   {
@@ -272,7 +272,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "agricola",
-    uid: uuid(),
+    uid: v4(),
     name: "Engenharia Agrícola",
   },
   {
@@ -280,7 +280,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "odontologia",
-    uid: uuid(),
+    uid: v4(),
     name: "Odontologia",
   },
   {
@@ -288,7 +288,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "turismo",
-    uid: uuid(),
+    uid: v4(),
     name: "Turismo",
   },
   {
@@ -296,7 +296,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "dancando",
-    uid: uuid(),
+    uid: v4(),
     name: "dança",
   },
   {
@@ -304,7 +304,7 @@ const profissoes: EventoF[] = [
     descricao: "descrição",
     tipo: "prof",
     image: "teatro",
-    uid: uuid(),
+    uid: v4(),
     name: "Artes Cenicas",
   },
 ];
@@ -314,7 +314,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "publicitario",
-    uid: uuid(),
+    uid: v4(),
     name: "Publicidade, Pro, Mark",
   },
   {
@@ -322,7 +322,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "psicologo",
-    uid: uuid(),
+    uid: v4(),
     name: "Psicologia",
   },
   {
@@ -330,7 +330,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "turismo",
-    uid: uuid(),
+    uid: v4(),
     name: "Turismo",
   },
   {
@@ -338,7 +338,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "calculadora",
-    uid: uuid(),
+    uid: v4(),
     name: "Organização Financeira",
   },
   {
@@ -346,7 +346,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "escola",
-    uid: uuid(),
+    uid: v4(),
     name: "Orientação Profissional",
   },
   {
@@ -354,7 +354,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "calculadora",
-    uid: uuid(),
+    uid: v4(),
     name: "Administração",
   },
   {
@@ -362,7 +362,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "escola",
-    uid: uuid(),
+    uid: v4(),
     name: "Fisica teorica",
   },
   {
@@ -370,7 +370,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "carreira",
-    uid: uuid(),
+    uid: v4(),
     name: "Transição de Carreira",
   },
   {
@@ -378,7 +378,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "calculadora",
-    uid: uuid(),
+    uid: v4(),
     name: "Administração",
   },
   {
@@ -386,7 +386,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "empreendedor",
-    uid: uuid(),
+    uid: v4(),
     name: "Empreendedorismo",
   },
   {
@@ -394,7 +394,7 @@ const palestras: EventoF[] = [
     descricao: "descrição",
     tipo: "pales",
     image: "veterinario",
-    uid: uuid(),
+    uid: v4(),
     name: "Medicina Veterinária",
   },
 ];
