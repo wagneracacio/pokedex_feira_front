@@ -25,7 +25,7 @@ export const getAllEvents = createAsyncThunk(
 export const setEvents = createAsyncThunk("event/setEvents", async () => {
   eventos.forEach((ev) => {
     setDoc(doc(db, "eventos", ev.uid), ev).then(() => {
-      console.log(`${ev.name} : ${ev.tipo} : ${qrCodeGenerator(TypeCheck.EVENT, ev.uid)}`)
+      console.log(`${ev.name} : ${ev.Tipo} : ${qrCodeGenerator(TypeCheck.EVENT, ev.uid)}`)
     });
   });
   console.log("terminou");

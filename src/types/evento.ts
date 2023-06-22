@@ -2,8 +2,8 @@ import { BaseF } from "./base";
 
 export interface EventoF extends BaseF {
   name: string;
-  descricao: string;
-  tipo: any;
+  Descrição: string;
+  Tipo: any;
   pontos: number;
-  image: string;
+  Image: string;
 }
