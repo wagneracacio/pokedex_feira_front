@@ -21,7 +21,10 @@ const Item =
             marginRight: "auto",
             width: "100%",
             maxWidth: "80px",
-            filter: !user!.eventos.includes(uid) ? "brightness(0)" : undefined,
+            filter:
+              !user.eventos || !user!.eventos.includes(uid)
+                ? "brightness(0)"
+                : undefined,
           }}
           src={getImage(image)}
           alt={uid}
@@ -56,7 +59,7 @@ export const Galeria = () => {
         items={[
           {
             label: "Profissoes",
-            images: events.filter((ev) => ev.tipo.includes('prof')),
+            images: events.filter((ev) => ev.tipo === "prof"),
           },
         ]}
       />
@@ -66,7 +69,7 @@ export const Galeria = () => {
         items={[
           {
             label: "Palestras",
-            images: events.filter((ev) => ev.tipo === 'pales'),
+            images: events.filter((ev) => ev.tipo === "pales"),
           },
         ]}
       />

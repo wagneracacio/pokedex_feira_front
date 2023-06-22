@@ -76,7 +76,7 @@ export const Amigos = () => {
           </div>
         ) : (
           <h3 style={{ textAlign: "center", margin: "auto" }}>
-            Voce escaneou {user!.friends.length} amigo
+            Voce escaneou {user!.friends.length || 0} amigo
             {user!.friends.length > 1 ? "s" : null}
           </h3>
         )}
