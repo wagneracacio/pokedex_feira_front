@@ -35,7 +35,7 @@ export function ScrollToTopButton() {
         bottom: 50,
         right: 20,
         cursor: "pointer",
-        color: "#9DA1F5",
+        color: "#F77748",
       }}
     />
   );

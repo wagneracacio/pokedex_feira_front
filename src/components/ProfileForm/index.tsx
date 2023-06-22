@@ -105,6 +105,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               value={formik.values.displayName}
               name="displayName"
               id="displayName"
+              autoComplete="off"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               type="text"
@@ -142,6 +143,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               value={formik.values.phoneNumber}
               name="phoneNumber"
               type="tel"
+              autoComplete="off"
               id="phoneNumber"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
