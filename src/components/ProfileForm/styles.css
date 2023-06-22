@@ -1,0 +1,60 @@
+.customWidth {
+  max-width: 30% !important;
+  margin: 0 auto !important;
+}
+.customHover:hover {
+    background-color:#4EA373 !important;
+}
+
+.customHover:disabled {
+    background-color:#555 !important;
+    
+}
+@media (max-width: 992px) {
+  .customWidth {
+    max-width: 75% !important;
+  }
+}
+@media (max-width: 768px) {
+  .customWidth {
+    max-width: 100% !important;
+  }
+}
+
+.alert-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  animation: alert-fade-in 3s ease-in-out, alert-fade-out 1s 5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  width: 500px;
+}
+
+@keyframes alert-fade-in {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes alert-fade-out {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

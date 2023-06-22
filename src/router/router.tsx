@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Login } from "../pages/Login";
-import { Profile } from "../pages/Profile";
 import { Score } from "../pages/Score";
 import { Scan } from "../pages/Scan";
 import { Profidex } from "../pages/Profidex";
 import { Galeria } from "../pages/Galeria";
 import { PrivateRoute } from "./PrivateRoute";
 import { Amigos } from "../pages/Amigos";
+import { ProfilePage } from "../pages/ProfilePage/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
     path: "/profile",
     element: (
       <PrivateRoute>
-        <Profile />
+        <ProfilePage />
       </PrivateRoute>
     ),
   },

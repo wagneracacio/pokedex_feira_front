@@ -27,6 +27,7 @@ const AmigoItem = ({ user }: Props) => {
     </Row>
   );
 };
+
 export const Amigos = () => {
   const {
     User: { users, loading },
@@ -46,6 +47,7 @@ export const Amigos = () => {
     } else if (user!.friends.length > users.length) {
       dispatch(getUsers(beLoad) as unknown as AnyAction);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
   useEffect(() => {
     if (loading && users.length)
