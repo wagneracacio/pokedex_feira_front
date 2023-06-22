@@ -43,7 +43,10 @@ export const Amigos = () => {
   useEffect(() => {
     if (beLoad.length > 0) {
       dispatch(getUsers(beLoad) as unknown as AnyAction);
-    } else if (user!.friends.length > users.length) {
+    } else if (
+      user!.friends !== undefined &&
+      user!.friends.length > users.length
+    ) {
       dispatch(getUsers(user!.friends) as unknown as AnyAction);
     }
   }, []);
@@ -55,14 +58,20 @@ export const Amigos = () => {
   return (
     <PageLayout title="Amigos">
       <>
-        {users
-          .filter((u) => {
-            return user!.friends && user!.friends.includes(u.uid);
-          })
-          .map((user) => (
-            <AmigoItem key={user.uid} user={user} />
-          ))}
-        {!user!.friends || user!.friends.length < 1 ? (
+        {user!.friends === undefined || user!.friends.length < 1 ? null : (
+          <>
+            {users
+              .filter((u) => {
+                return (
+                  user!.friends !== undefined && user!.friends.includes(u.uid)
+                );
+              })
+              .map((user) => (
+                <AmigoItem key={user.uid} user={user} />
+              ))}
+          </>
+        )}
+        {user!.friends === undefined || user!.friends.length < 1 ? (
           <div
             style={{
               display: "flex",
