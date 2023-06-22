@@ -8,7 +8,6 @@ import { loadCache } from "../../redux/features/base/base-slice";
 
 export const Score = () => {
   const {
-    Auth: { user },
     Event: { events },
     User: { users },
   } = useAppSelector((state) => state);
@@ -27,10 +26,16 @@ export const Score = () => {
           score: [
             0,
             ...events
-              .filter(({ uid }) => u.eventos.includes(uid))
+              .filter(
+                ({ uid }) =>
+                  u.eventos && u.eventos.length > 0 && u.eventos.includes(uid)
+              )
               .map(({ pontos }) => pontos),
             ...users
-              .filter(({ uid }) => u.friends.includes(uid))
+              .filter(
+                ({ uid }) =>
+                  u.friends && u.friends.length > 0 && u.friends.includes(uid)
+              )
               .map(({ pontos }) => pontos),
           ].reduce((p, c) => p + c),
         }))}
