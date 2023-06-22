@@ -27,7 +27,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
   const formik = useFormik({
     initialValues,
     validationSchema: object({
-      displayName: string().required("Campo obrigatório").trim(),
+      displayName: string().required("Campo obrigatório").trim().min(3, "O nome deve ter no mínimo 3 caracteres"),
       phoneNumber: string()
         .trim()
         .required("Campo obrigatório")
@@ -108,6 +108,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               type="text"
+              data-testid="displayName"
               placeholder="Nome"
               style={{
                 border: formik.errors.displayName ? "1px solid red" : "",
@@ -135,7 +136,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
                 color: "black",
               }}
             >
-              Numero para contato
+              Número para contato
             </Form.Label>
             <Form.Control
               value={formik.values.phoneNumber}
@@ -144,6 +145,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               id="phoneNumber"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              data-testid="phoneNumber"
               placeholder="Telefone"
               style={{
                 border: formik.errors.phoneNumber ? "1px solid red" : "",
@@ -179,6 +181,7 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               className="form-control"
               id="descricao"
               rows={3}
+              data-testid="descricao"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               style={{
