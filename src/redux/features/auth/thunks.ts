@@ -1,7 +1,7 @@
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { db, firebaseAuth } from "../../../config/firebase";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addFriendState, setUser } from "./auth-slice";
+import { addEventState, addFriendState, setUser } from "./auth-slice";
 import {
   updateDoc,
   getDoc,
@@ -65,7 +65,7 @@ export const addEvent = createAsyncThunk(
         updateDoc(doc(db, "users", user.uid), {
           eventos: arrayUnion(uid),
         }).then(() => {
-          dispatch(addFriendState(uid));
+          dispatch(addEventState(uid));
         });
       }
     });

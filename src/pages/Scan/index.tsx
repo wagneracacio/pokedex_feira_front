@@ -19,16 +19,18 @@ export const Scan = () => {
 
   const handleScan = async (scanData: any) => {
     if (scanData && scanData !== "") {
-      const obj = qrCodeValidator(scanData)
+      const obj = qrCodeValidator(scanData);
       if (obj) {
         if (obj.type === TypeCheck.EVENT) {
           //chamada para adicionar evento
-          dispatch(addEvent(obj.value) as unknown as AnyAction)
+          dispatch(addEvent(obj.value) as unknown as AnyAction);
+          navigate("/profidex");
         } else if (obj.type === TypeCheck.USER) {
           //chamada para adicionar amigo
-          dispatch(addFriend(obj.value) as unknown as AnyAction)
+          dispatch(addFriend(obj.value) as unknown as AnyAction);
+          navigate("/profidex");
         }
-        navigate('/profidex')
+        // navigate('/profidex')
       }
     }
   };

@@ -63,7 +63,7 @@ export const List = <T,>({ items, renderImage }: Props<T>) => {
     <>
       {items.map(({ label, images }, i) => (
         <div key={i}>
-          <h4 style={{ textAlign: "center" }}>{label}</h4>
+          <h4 className="mb-4" style={{ textAlign: "center" }}>{label}</h4>
           {GenerateRows(images, renderImage)}
         </div>
       ))}
