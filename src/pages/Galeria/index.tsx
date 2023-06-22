@@ -46,7 +46,7 @@ export const Galeria = () => {
     dispatch(loadCache() as unknown as AnyAction);
   }, []);
   useEffect(() => {
-    if (loading && events.length)
+    if (loading && events.length > 0)
       dispatch(saveCache({ events }) as unknown as AnyAction);
   }, [loading]);
   return (
@@ -56,16 +56,17 @@ export const Galeria = () => {
         items={[
           {
             label: "Profissoes",
-            images: events,
+            images: events.filter((ev) => ev.tipo.includes('prof')),
           },
         ]}
       />
+      <div className="mt-4"></div>
       <List<EventoF>
         renderImage={Item(user!)}
         items={[
           {
             label: "Palestras",
-            images: events,
+            images: events.filter((ev) => ev.tipo === 'pales'),
           },
         ]}
       />

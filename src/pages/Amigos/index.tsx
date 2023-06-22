@@ -44,11 +44,11 @@ export const Amigos = () => {
     if (beLoad.length > 0) {
       dispatch(getUsers(beLoad) as unknown as AnyAction);
     } else if (user!.friends.length > users.length) {
-      dispatch(getUsers(beLoad) as unknown as AnyAction);
+      dispatch(getUsers(user!.friends) as unknown as AnyAction);
     }
-  },[]);
+  }, []);
   useEffect(() => {
-    if (loading && users.length)
+    if (loading && users.length > 0)
       dispatch(saveCache({ users }) as unknown as AnyAction);
   }, [dispatch, loading, users]);
 
