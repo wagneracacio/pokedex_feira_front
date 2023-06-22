@@ -1,10 +1,8 @@
 import { List } from "../../components/List";
-import teste from "../../assets/images/prof/teste.png";
 import PageLayout from "../Layout";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { EventoF, UsuarioF } from "../../types";
 import { useEffect } from "react";
-import { getAllEvents } from "../../redux/features/event/thunks";
 import { AnyAction } from "@reduxjs/toolkit";
 import { loadCache, saveCache } from "../../redux/features/base/base-slice";
 import { getImage } from "./utils";
@@ -44,10 +42,12 @@ export const Galeria = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadCache() as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (loading && events.length > 0)
       dispatch(saveCache({ events }) as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
   return (
     <PageLayout title="Galeria">

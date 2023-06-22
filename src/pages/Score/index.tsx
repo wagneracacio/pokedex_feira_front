@@ -15,6 +15,7 @@ export const Score = () => {
   useEffect(() => {
     dispatch(loadCache() as unknown as AnyAction);
     dispatch(getAllUsers() as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <PageLayout title="Score Page">

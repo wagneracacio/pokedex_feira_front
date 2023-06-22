@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PageLayout from "../Layout";
 import QRCode from "react-qr-code";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { TypeCheck, userHashCheck } from "../../config/credentials";
+import { TypeCheck } from "../../config/credentials";
 import { qrCodeGenerator } from "../../utils/qrCodeValidator";
 import { useEffect } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
@@ -22,6 +22,7 @@ export const Profidex = () => {
   useEffect(() => {
     if (loading && events.length > 0)
       dispatch(saveCache({ auth: user! }) as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
     <PageLayout title="Scan">

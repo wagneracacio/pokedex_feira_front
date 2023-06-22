@@ -14,10 +14,11 @@ export const Login = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshLogin() as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (user) navigate("/profile");
-  }, [loading, user]);
+  }, [loading, navigate, user]);
   return (
     <>
       <Card
