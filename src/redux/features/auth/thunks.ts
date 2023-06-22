@@ -46,11 +46,7 @@ export const addFriend = createAsyncThunk(
         updateDoc(doc(db, "users", user.uid), {
           friends: arrayUnion(uid),
         }).then(() => {
-          updateDoc(doc(db, "users", uid), {
-            friends: arrayUnion(user.uid),
-          }).then(() => {
-            dispatch(addFriendState(uid));
-          });
+          dispatch(addFriendState(uid));
         });
       }
     });
