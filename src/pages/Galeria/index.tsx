@@ -46,7 +46,7 @@ export const Galeria = () => {
     dispatch(loadCache() as unknown as AnyAction);
   }, []);
   useEffect(() => {
-    if (loading && events.length > 0)
+    if (loading && events && events.length > 0)
       dispatch(saveCache({ events }) as unknown as AnyAction);
   }, [loading]);
   return (
