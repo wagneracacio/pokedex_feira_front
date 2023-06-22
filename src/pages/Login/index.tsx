@@ -38,7 +38,7 @@ export const Login = () => {
           Login Page
         </h5>
         <Card.Body>
-          <div style={{ height: "100%", position: "relative" }}>
+          <div style={{ height: "100%", position: "relative", display: 'flex' }}>
             <GoogleButton
               style={{
                 margin: "auto",

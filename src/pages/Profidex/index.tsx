@@ -26,26 +26,35 @@ export const Profidex = () => {
   }, [user]);
   return (
     <PageLayout title="Scan">
-      <div className="d-flex justify-content-center">
-        <QRCode value={qrCodeGenerator(TypeCheck.USER, user!.uid)} />
-      </div>
-      <h5 className="d-flex justify-content-center">Seu QrCode</h5>
-      <div className="d-flex justify-content-center mt-5">
-        <Button
-          style={{
-            borderRadius: "50%",
-            paddingLeft: 12,
-            paddingRight: 12,
-            paddingTop: 12,
-            paddingBottom: 12,
-            borderColor: "black",
-            borderWidth: "5px",
-          }}
-          variant="light"
-          onClick={() => navigate("/scan")}
-        >
-          <BsQrCodeScan size={50} />
-        </Button>
+      <div style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignItems: "center",
+      }}>
+        <div>
+          <h5 className="d-flex justify-content-center">Seu QrCode</h5>
+          <QRCode value={qrCodeGenerator(TypeCheck.USER, user!.uid)} />
+        </div>
+        <div className="d-flex justify-content-center mt-5">
+          <Button
+            style={{
+              borderRadius: "50%",
+              paddingLeft: 12,
+              paddingRight: 12,
+              paddingTop: 12,
+              paddingBottom: 12,
+              borderColor: "black",
+              borderWidth: "5px",
+            }}
+            variant="light"
+            onClick={() => navigate("/scan")}
+          >
+            <BsQrCodeScan size={50} />
+          </Button>
+        </div>
       </div>
     </PageLayout>
   );
