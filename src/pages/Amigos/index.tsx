@@ -77,6 +77,7 @@ export const Amigos = () => {
         ) : (
           <h3 style={{ textAlign: "center", margin: "auto" }}>
             Voce escaneou {user!.friends.length} amigo
+            {user!.friends.length > 1 ? "s" : null}
           </h3>
         )}
       </>
