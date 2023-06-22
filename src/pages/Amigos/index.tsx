@@ -105,6 +105,7 @@ export const Amigos = () => {
     } else if (user!.friends.length > users.length) {
       dispatch(getUsers(user!.friends) as unknown as AnyAction);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
