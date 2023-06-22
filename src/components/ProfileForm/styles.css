@@ -22,14 +22,10 @@
 }
 
 .alert-fixed {
-  position: fixed;
-  top: 20px;
-  right: 20px;
   z-index: 9999;
   animation: alert-fade-in 3s ease-in-out, alert-fade-out 1s 5s ease-in-out;
   opacity: 0;
   pointer-events: none;
-  width: 500px;
 }
 
 @keyframes alert-fade-in {

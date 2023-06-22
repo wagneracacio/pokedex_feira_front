@@ -88,11 +88,6 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
   return (
     <PageLayout title="Meu Perfil">
       <ProfilePicture defaultSize={100} url={user?.photoURL || undefined} />{" "}
-      {messages.text && (
-        <div className={`alert-fixed alert-${messages.variant}`}>
-          <Alert>{messages.text}</Alert>
-        </div>
-      )}
       <Row className="customWidth">
         <form onSubmit={formik.handleSubmit}>
           <Form.Group className="mt-2">
@@ -203,7 +198,11 @@ export const ProfileForm = ({ initialValues }: ProfileProps) => {
               {formik.errors.descricao}
             </p>
           </Form.Group>
-
+          {messages.text && (
+            <div className={`alert-fixed alert-${messages.variant}`}>
+              <Alert>{messages.text}</Alert>
+            </div>
+          )}
           <Button
             style={{
               width: "100%",
