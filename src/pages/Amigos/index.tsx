@@ -62,6 +62,23 @@ export const Amigos = () => {
           .map((user) => (
             <AmigoItem key={user.uid} user={user} />
           ))}
+        {!user!.friends || user!.friends.length < 1 ? (
+          <div
+            style={{
+              display: "flex",
+              justifySelf: "center",
+              alignContent: "center",
+            }}
+          >
+            <h3 style={{ textAlign: "center", margin: "auto" }}>
+              Voce não escaneou nenhum amigo ainda
+            </h3>
+          </div>
+        ) : (
+          <h3 style={{ textAlign: "center", margin: "auto" }}>
+            Voce escaneou {user!.friends.length} amigo
+          </h3>
+        )}
       </>
     </PageLayout>
   );
