@@ -9,7 +9,7 @@ import { getImage } from "./utils";
 
 const Item =
   (user: UsuarioF) =>
-  ({ uid, Image: image, name }: EventoF) =>
+  ({ uid, image: image, name }: EventoF) =>
     (
       <>
         <img
@@ -19,7 +19,10 @@ const Item =
             marginRight: "auto",
             width: "100%",
             maxWidth: "80px",
-            filter: !user!.eventos.includes(uid) ? "brightness(0)" : undefined,
+            filter:
+              !user.eventos || !user!.eventos.includes(uid)
+                ? "brightness(0)"
+                : undefined,
           }}
           src={getImage(image)}
           alt={uid}
@@ -47,7 +50,7 @@ export const Galeria = () => {
   }, []);
 
   useEffect(() => {
-    if (loading && events.length > 0)
+    if (loading && events && events.length > 0)
       dispatch(saveCache({ events }) as unknown as AnyAction);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
@@ -59,7 +62,7 @@ export const Galeria = () => {
         items={[
           {
             label: "Profissoes",
-            images: events.filter((ev) => ev.Tipo.includes('Profissão')),
+            images: events.filter((ev) => ev.tipo === "prof"),
           },
         ]}
       />
@@ -69,7 +72,7 @@ export const Galeria = () => {
         items={[
           {
             label: "Palestras",
-            images: events.filter((ev) => ev.Tipo === 'Palestra'),
+            images: events.filter((ev) => ev.tipo === "pales"),
           },
         ]}
       />

@@ -23,7 +23,7 @@ export default function PageLayout({
     navigate(-1);
   };
   return (
-    <Card style={{ height: "100%", background: "none", border: "none" }}>
+    <Card style={{ height: "100vh", background: "none", border: "none" }}>
       <Header {...{ title, goBack, onClose }} />
       <Card.Body>{children}</Card.Body>
       <Footer />

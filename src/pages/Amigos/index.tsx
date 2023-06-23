@@ -102,7 +102,10 @@ export const Amigos = () => {
   React.useEffect(() => {
     if (beLoad.length > 0) {
       dispatch(getUsers(beLoad) as unknown as AnyAction);
-    } else if (user!.friends.length > users.length) {
+    } else if (
+      user!.friends !== undefined &&
+      user!.friends.length > users.length
+    ) {
       dispatch(getUsers(user!.friends) as unknown as AnyAction);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -148,14 +151,35 @@ export const Amigos = () => {
             marginBottom: "3rem",
           }}
         >
-          
-          {users.slice(0, friendsToShow)
-          .filter((u) => {
-            return user!.friends.includes(u.uid);
-          })
-          .map((user) => (
-            <FriendItem key={user.uid} user={user} />
-          ))}
+          {users
+            .slice(0, friendsToShow)
+            .filter((u) => {
+              return (
+                user!.friends !== undefined && user!.friends.includes(u.uid)
+              );
+            })
+            .map((user) => (
+              <FriendItem key={user.uid} user={user} />
+            ))}
+
+          {user!.friends === undefined || user!.friends.length < 1 ? (
+            <div
+              style={{
+                display: "flex",
+                justifySelf: "center",
+                alignContent: "center",
+              }}
+            >
+              <h3 style={{ textAlign: "center", margin: "auto" }}>
+                Voce não escaneou nenhum amigo ainda
+              </h3>
+            </div>
+          ) : (
+            <h3 style={{ textAlign: "center", margin: "auto" }}>
+              Voce escaneou {user!.friends.length || 0} amigo
+              {user!.friends.length > 1 ? "s" : null}
+            </h3>
+          )}
           <div ref={bottomRef} />
           {friendsToShow < users.length && (
             <Button
@@ -188,6 +212,7 @@ export const Amigos = () => {
           </div>
         </div>
       </div>
+      <></>
     </PageLayout>
   );
 };
