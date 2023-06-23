@@ -1,7 +1,7 @@
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { db, firebaseAuth } from "../../../config/firebase";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addFriendState, setUser } from "./auth-slice";
+import { addEventState, addFriendState, setUser } from "./auth-slice";
 import {
   updateDoc,
   getDoc,
@@ -46,11 +46,7 @@ export const addFriend = createAsyncThunk(
         updateDoc(doc(db, "users", user.uid), {
           friends: arrayUnion(uid),
         }).then(() => {
-          updateDoc(doc(db, "users", uid), {
-            friends: arrayUnion(user.uid),
-          }).then(() => {
-            dispatch(addFriendState(uid));
-          });
+          dispatch(addFriendState(uid));
         });
       }
     });
@@ -65,7 +61,7 @@ export const addEvent = createAsyncThunk(
         updateDoc(doc(db, "users", user.uid), {
           eventos: arrayUnion(uid),
         }).then(() => {
-          dispatch(addFriendState(uid));
+          dispatch(addEventState(uid));
         });
       }
     });
@@ -115,13 +111,14 @@ export const login = createAsyncThunk("user/login", async (_, { dispatch }) => {
       });
     })
     .catch((error) => {
+      
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // // The email of the user's account used.
+      // const email = error.customData.email;
+      // // The AuthCredential type that was used.
+      // const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
 });

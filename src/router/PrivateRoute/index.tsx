@@ -15,6 +15,7 @@ export const PrivateRoute = ({ children }: Props) => {
   useEffect(() => {
     if (!loading && !user) navigate("/");
     if (loading) dispatch(refreshLogin() as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, user]);
   return user ? (
     <>{children}</>

@@ -23,58 +23,72 @@ const MenuItem = ({ item: { name, number, score, url }, index }: ItemProps) => {
       className="list-group-item"
       style={{
         display: "flex",
-        gap: "10px",
+        gap: "1rem",
+        alignItems: "center",
+        borderBottom: "1px solid #DDD",
+        width: "100%",
+        paddingBottom: "1rem",
+        marginTop: "1rem"
       }}
     >
       <Medal position={index + 1} />
-      <ProfilePicture url={url} defaultSize={30} />
-
-      <h5
-        className="mb-0"
-        style={{
-          justifyContent: "center",
-          alignSelf: "center",
-        }}
-      >
-        {name}:
-      </h5>
-      <h5
-        className="mb-0"
-        style={{
-          justifyContent: "center",
-          alignSelf: "center",
-        }}
-      >
-        {score}
-      </h5>
       <div
-        onClick={() => setShow(!show)}
         style={{
           display: "flex",
+          gap: "1rem",
+          alignItems: "center",
           justifyContent: "center",
-          alignSelf: "center",
+          width: "100%"
         }}
       >
-        {show ? <BsEyeFill /> : <BsEyeSlashFill />}
+        <ProfilePicture url={url} defaultSize={30} />
+
+        <label>{name}:</label>
+
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%"
+        }}>
+          <label>{score}</label>
+
+          {show && (
+            <h6
+              className="mb-0"
+              style={{
+                justifyContent: "center",
+                alignSelf: "center",
+              }}
+            >
+              Telefone: {number}
+            </h6>
+          )}
+          <button
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+            }}
+            onClick={() => setShow(!show)}
+          >
+            {show ? <BsEyeFill /> : <BsEyeSlashFill />}
+          </button>
+        </div>
       </div>
-      {show && (
-        <h6
-          className="mb-0"
-          style={{
-            justifyContent: "center",
-            alignSelf: "center",
-          }}
-        >
-          Telefone: {number}
-        </h6>
-      )}
     </li>
   );
 };
 export const Menu = ({ items }: Props) => {
   return (
-    <div>
-      <ul className="list-group">
+    <div className="w-25 mx-auto">
+      <ul
+        style={{
+          backgroundColor: "#FEFEFE60",
+          borderRadius: "4px",
+          padding: "1rem",
+          margin: "1rem",
+        }}
+      >
         {items
           .sort((a, b) => {
             if (a.score > b.score) {

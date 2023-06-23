@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 #firebase configuration credentials
 src/config/credentials.ts
+#firebase ignores
+.firebaserc
+firebase.json
+.firebase/*

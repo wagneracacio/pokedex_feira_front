@@ -3,6 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -82,7 +83,7 @@ export default {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/__tests__/__mocks__/profile.jpg",
+    ".+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -203,8 +204,10 @@ export default {
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   transformIgnorePatterns: [
-    "src/profile.jpg",
-    //   "/node_modules/",
+    "src/assets/profile.jpg",
+    "\\.(svg|jpg|png)$",
+    "src/assets/images/company/Intera.svg",
+    // "/node_modules/",
     //   "\\.pnp\\.[^\\/]+$"
   ],
 
