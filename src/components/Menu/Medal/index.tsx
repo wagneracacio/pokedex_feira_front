@@ -11,6 +11,10 @@ export const Medal = ({ position }: Props) => {
       className="btn"
       style={{
         width: 40,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white",
         backgroundColor:
           position === 1
             ? "#ffd700"
@@ -23,9 +27,12 @@ export const Medal = ({ position }: Props) => {
       }}
     >
       {position < 4 ? (
-        <FaMedal style={{ padding: 0, margin: 0 }} />
+        <FaMedal style={{ width: 24, height: 24 }} />
       ) : (
-        <div style={{ width: 24, height: 24 }}>{position}</div>
+        <div style={{ 
+          width: 24,
+          height: 24,
+        }}>{position}</div>
       )}
     </button>
   );

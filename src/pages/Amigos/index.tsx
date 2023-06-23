@@ -6,7 +6,7 @@ import { UsuarioF } from "../../types";
 import { loadCache, saveCache } from "../../redux/features/base/base-slice";
 import { getUsers } from "../../redux/features/user/thunks";
 import { generateRandomColor } from "../../utils/generateColor";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import "./styles.css";
 import ScrollToTopButton from "../../components/ScrollToTop/ScrollToTop";
 interface Props {
@@ -35,6 +35,7 @@ const FriendItem = ({ user }: Props) => {
         gap: "2rem",
         alignItems: "center",
         marginBottom: "2rem",
+        justifyContent: "center",
       }}
     >
       <div style={gradientStyle}>
@@ -54,14 +55,6 @@ const FriendItem = ({ user }: Props) => {
         >
           {user.displayName}
         </label>
-        <p
-          style={{
-            fontSize: "0.9rem",
-            color: "#666",
-          }}
-        >
-          {user.descricao}
-        </p>
       </div>
     </div>
   );
@@ -116,17 +109,17 @@ export const Amigos = () => {
       dispatch(saveCache({ users }) as unknown as AnyAction);
   }, [dispatch, loading, users]);
 
-  // const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
-  //   uid: i.toString(),
-  //   displayName: `User ${i}`,
-  //   photoURL: `https://github.com/user${i}.png`,
-  //   descricao: "Lorem ipsum dolor sit amet consectetur",
-  //   eventos: [],
-  //   friends: [],
-  //   email: `user${i}@gmail.com`,
-  //   phoneNumber: `+55 11 9${i}0000000`,
-  //   pontos: i,
-  // }));
+  const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
+    uid: i.toString(),
+    displayName: `User ${i}`,
+    photoURL: `https://github.com/user${i}.png`,
+    descricao: "Lorem ipsum dolor sit amet consectetur",
+    eventos: [],
+    friends: [],
+    email: `user${i}@gmail.com`,
+    phoneNumber: `+55 11 9${i}0000000`,
+    pontos: i,
+  }));
 
   const handleSeeMore = () => {
     setFriendsToShow(friendsToShow + 20);
@@ -144,72 +137,81 @@ export const Amigos = () => {
 
   return (
     <PageLayout title="Amigos">
-      <div style={{ width: "100%", margin: "0 auto" }}>
+      {user!.friends === undefined || user!.friends.length < 1 ? (
         <div
-          className="row" // Adicionamos a classe "row" para envolver as colunas
           style={{
-            marginBottom: "3rem",
+            display: "flex",
+            justifySelf: "center",
+            alignContent: "center",
           }}
         >
-          {users
-            .slice(0, friendsToShow)
-            .filter((u) => {
-              return (
-                user!.friends !== undefined && user!.friends.includes(u.uid)
-              );
-            })
-            .map((user) => (
-              <FriendItem key={user.uid} user={user} />
-            ))}
-
-          {user!.friends === undefined || user!.friends.length < 1 ? (
-            <div
-              style={{
-                display: "flex",
-                justifySelf: "center",
-                alignContent: "center",
-              }}
-            >
-              <h3 style={{ textAlign: "center", margin: "auto" }}>
-                Voce não escaneou nenhum amigo ainda
-              </h3>
-            </div>
-          ) : (
-            <h3 style={{ textAlign: "center", margin: "auto" }}>
-              Voce escaneou {user!.friends.length || 0} amigo
-              {user!.friends.length > 1 ? "s" : null}
-            </h3>
-          )}
-          <div ref={bottomRef} />
-          {friendsToShow < users.length && (
-            <Button
-              style={{
-                position: "fixed",
-                bottom: "50px",
-                left: "50%",
-                height: "50px",
-                width: "120px",
-                backgroundColor: "#E1AD3D",
-                color: "#000",
-                border: "#444",
-                transform: "translateX(-50%)",
-                transition: "background-color 0.3s",
-                animation: "ping 1s infinite",
-              }}
-              onClick={handleSeeMore}
-            >
-              Ver mais
-            </Button>
-          )}
-
-          <div
+          <Alert
+            className="Alert alert-danger mx-auto"
             style={{
-              width: "100%",
+              textAlign: "center",
+              marginTop: "5rem",
+              marginBottom: "7rem",
+              width: "25%",
             }}
-            onClick={handleClearFriendList}
           >
-            <ScrollToTopButton />
-          </div>
+            Você não escaneou nenhum amigo ainda, bora conhecer gente nova? 😊
+          </Alert>
+        </div>
+      ) : (
+        <Alert
+          className="Alert alert-primary mx-auto"
+          style={{
+            textAlign: "center",
+            marginTop: "5rem",
+            marginBottom: "7rem",
+            width: "25%",
+          }}
+        >
+          Você escaneou {user!.friends.length || 0} amigo
+          {user!.friends.length > 1 ? "s" : null} 🚀
+        </Alert>
+      )}
+      <div
+        className="row"
+        style={{
+          marginBottom: "3rem",
+        }}
+      >
+        {mockedUsers
+          .slice(0, friendsToShow)
+
+          .map((user) => (
+            <FriendItem key={user.uid} user={user} />
+          ))}
+        <div ref={bottomRef} />
+        {friendsToShow < mockedUsers.length && (
+          <Button
+            style={{
+              position: "fixed",
+              bottom: "50px",
+              left: "50%",
+              height: "50px",
+              width: "120px",
+              backgroundColor: "#E1AD3D",
+              color: "#000",
+              border: "#444",
+              transform: "translateX(-50%)",
+              transition: "background-color 0.3s",
+              animation: "ping 1s infinite",
+            }}
+            onClick={handleSeeMore}
+          >
+            Ver mais
+          </Button>
+        )}
+
+        <div
+          style={{
+            width: "100%",
+          }}
+          onClick={handleClearFriendList}
+        >
+          <ScrollToTopButton />
         </div>
       </div>
       <></>
