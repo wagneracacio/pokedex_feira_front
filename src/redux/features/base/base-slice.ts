@@ -2,9 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { EventoF, UsuarioF } from "../../../types";
 import { loadEvent, setLoading as setLoadingE } from "../event/event-slice";
 import { loadUser, setLoading } from "../user/user-slice";
-import { getAllUsers } from "../user/thunks";
 import { getAllEvents } from "../event/thunks";
-import { setUser, updateUser } from "../auth/auth-slice";
+import { setUser } from "../auth/auth-slice";
 
 export enum Cache {
   EVENTO = "event_cache",

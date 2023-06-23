@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { CameraButton } from "./CameraButton";
-import profile from "../../assets/profile.jpg";
 import { Image } from "react-bootstrap";
 
 interface Props {

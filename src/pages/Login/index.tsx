@@ -14,10 +14,11 @@ export const Login = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshLogin() as unknown as AnyAction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (user) navigate("/profile");
-  }, [loading, user]);
+  }, [loading, navigate, user]);
   return (
     <>
       <Card
@@ -37,7 +38,7 @@ export const Login = () => {
           Login Page
         </h5>
         <Card.Body>
-          <div style={{ height: "100%", position: "relative" }}>
+          <div style={{ height: "100%", position: "relative", display: 'flex' }}>
             <GoogleButton
               style={{
                 margin: "auto",

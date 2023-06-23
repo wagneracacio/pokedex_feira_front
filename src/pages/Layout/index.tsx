@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logout } from "../../redux/features/auth/auth-slice";
 import { AnyAction } from "@reduxjs/toolkit";
-import intera from "../../assets/images/company/Intera.svg";
 import { Footer } from "../../components/Footer";
 interface PageProps {
   title: string;

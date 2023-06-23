@@ -1,5 +1,5 @@
 import { AnyAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { db, firebaseAuth } from "../../../config/firebase";
+import { db } from "../../../config/firebase";
 import { getDocs, collection, getDoc, doc } from "firebase/firestore";
 import { loadUser, setLoading } from "./user-slice";
 import { UsuarioF } from "../../../types";
