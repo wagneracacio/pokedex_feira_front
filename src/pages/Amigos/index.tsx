@@ -109,17 +109,17 @@ export const Amigos = () => {
       dispatch(saveCache({ users }) as unknown as AnyAction);
   }, [dispatch, loading, users]);
 
-  const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
-    uid: i.toString(),
-    displayName: `User ${i}`,
-    photoURL: `https://github.com/user${i}.png`,
-    descricao: "Lorem ipsum dolor sit amet consectetur",
-    eventos: [],
-    friends: [],
-    email: `user${i}@gmail.com`,
-    phoneNumber: `+55 11 9${i}0000000`,
-    pontos: i,
-  }));
+  // const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
+  //   uid: i.toString(),
+  //   displayName: `User ${i}`,
+  //   photoURL: `https://github.com/user${i}.png`,
+  //   descricao: "Lorem ipsum dolor sit amet consectetur",
+  //   eventos: [],
+  //   friends: [],
+  //   email: `user${i}@gmail.com`,
+  //   phoneNumber: `+55 11 9${i}0000000`,
+  //   pontos: i,
+  // }));
 
   const handleSeeMore = () => {
     setFriendsToShow(friendsToShow + 20);
