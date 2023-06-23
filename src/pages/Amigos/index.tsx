@@ -109,17 +109,17 @@ export const Amigos = () => {
       dispatch(saveCache({ users }) as unknown as AnyAction);
   }, [dispatch, loading, users]);
 
-  const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
-    uid: i.toString(),
-    displayName: `User ${i}`,
-    photoURL: `https://github.com/user${i}.png`,
-    descricao: "Lorem ipsum dolor sit amet consectetur",
-    eventos: [],
-    friends: [],
-    email: `user${i}@gmail.com`,
-    phoneNumber: `+55 11 9${i}0000000`,
-    pontos: i,
-  }));
+  // const mockedUsers: UsuarioF[] = Array.from({ length: 100 }, (_, i) => ({
+  //   uid: i.toString(),
+  //   displayName: `User ${i}`,
+  //   photoURL: `https://github.com/user${i}.png`,
+  //   descricao: "Lorem ipsum dolor sit amet consectetur",
+  //   eventos: [],
+  //   friends: [],
+  //   email: `user${i}@gmail.com`,
+  //   phoneNumber: `+55 11 9${i}0000000`,
+  //   pontos: i,
+  // }));
 
   const handleSeeMore = () => {
     setFriendsToShow(friendsToShow + 20);
@@ -150,7 +150,7 @@ export const Amigos = () => {
               textAlign: "center",
               marginTop: "5rem",
               marginBottom: "7rem",
-              width: "25%",
+              width: "300px",
             }}
           >
             Você não escaneou nenhum amigo ainda, bora conhecer gente nova? 😊
@@ -163,10 +163,11 @@ export const Amigos = () => {
             textAlign: "center",
             marginTop: "5rem",
             marginBottom: "7rem",
-            width: "25%",
+            width: "300px",
           }}
         >
           Você escaneou {user!.friends.length || 0} amigo
+          {user!.friends.length === 0 ? "s" : null}
           {user!.friends.length > 1 ? "s" : null} 🚀
         </Alert>
       )}
