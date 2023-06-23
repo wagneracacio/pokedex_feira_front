@@ -40,8 +40,9 @@ const FriendItem = ({ user }: Props) => {
     >
       <div style={gradientStyle}>
         <img
-          src={user?.photoURL}
+          src={user.photoURL}
           alt={user.descricao}
+          referrerPolicy="no-referrer"
           style={{ width: 70, height: 70, borderRadius: "50%" }}
         />
       </div>
@@ -68,7 +69,6 @@ export const Amigos = () => {
   const dispatch = useAppDispatch();
   const [friendsToShow, setFriendsToShow] = React.useState(20);
   const bottomRef = React.useRef(null);
-
 
   const smoothScrollToBottom = () => {
     // @ts-ignore
@@ -101,7 +101,7 @@ export const Amigos = () => {
     ) {
       dispatch(getUsers(user!.friends) as unknown as AnyAction);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -131,9 +131,8 @@ export const Amigos = () => {
 
     setTimeout(() => {
       setFriendsToShow(20);
-    }
-      , 1000);
-  }
+    }, 1000);
+  };
 
   return (
     <PageLayout title="Amigos">
@@ -177,14 +176,20 @@ export const Amigos = () => {
           marginBottom: "3rem",
         }}
       >
-        {mockedUsers
+        {users
+          .filter((u) => {
+            return (
+              user!.friends !== undefined &&
+              user!.friends.length > 0 &&
+              user!.friends.includes(u.uid)
+            );
+          })
           .slice(0, friendsToShow)
-
           .map((user) => (
             <FriendItem key={user.uid} user={user} />
           ))}
         <div ref={bottomRef} />
-        {friendsToShow < mockedUsers.length && (
+        {friendsToShow < users.length && (
           <Button
             style={{
               position: "fixed",
