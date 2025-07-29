@@ -26,6 +26,7 @@ export default function PageLayout({
     <Card style={{ height: "100vh", background: "none", border: "none" }}>
       <Header {...{ title, goBack, onClose }} />
       <Card.Body>{children}</Card.Body>
+      Hello World
       <Footer />
     </Card>
   );
